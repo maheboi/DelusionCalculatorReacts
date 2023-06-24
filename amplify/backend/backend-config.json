@@ -1,0 +1,78 @@
+{
+  "api": {
+    "calculatorreacts": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_storage_Todo22d3uzzolbentis6h5rqrxvcqmdev_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Todo22d3uzzolbentis6h5rqrxvcqmdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Todo22d3uzzolbentis6h5rqrxvcqmdev_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Todo22d3uzzolbentis6h5rqrxvcqmdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Todo22d3uzzolbentis6h5rqrxvcqmdev_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Todo22d3uzzolbentis6h5rqrxvcqmdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Todo22d3uzzolbentis6h5rqrxvcqmdev_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Todo22d3uzzolbentis6h5rqrxvcqmdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Todo22d3uzzolbentis6h5rqrxvcqmdev_streamArn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Todo22d3uzzolbentis6h5rqrxvcqmdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Todo22d3uzzolbentis6h5rqrxvcqmdev_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Todo22d3uzzolbentis6h5rqrxvcqmdev"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "Todo22d3uzzolbentis6h5rqrxvcqmdev": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB",
+      "serviceType": "imported"
+    }
+  }
+}
