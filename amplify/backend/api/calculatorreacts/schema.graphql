@@ -3,7 +3,13 @@
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
 type Todo @model {
-  id: ID!
-  name: String!
-  description: String
+  id: ID
+  height: Float
+  race: String
+  education: String
+  ageMin: Int
+  ageMax: Int
+  probability: Float
+  obese: Boolean
+  marriage: Boolean
 }

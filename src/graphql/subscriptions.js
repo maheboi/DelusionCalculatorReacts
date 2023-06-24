@@ -4,9 +4,14 @@
 export const onCreateTodo = /* GraphQL */ `
   subscription OnCreateTodo($filter: ModelSubscriptionTodoFilterInput) {
     onCreateTodo(filter: $filter) {
-      id
-      name
-      description
+      ageMin
+      ageMax
+      race
+      income
+      probability
+      education
+      obese
+      marriage
       createdAt
       updatedAt
       __typename
@@ -16,9 +21,14 @@ export const onCreateTodo = /* GraphQL */ `
 export const onUpdateTodo = /* GraphQL */ `
   subscription OnUpdateTodo($filter: ModelSubscriptionTodoFilterInput) {
     onUpdateTodo(filter: $filter) {
-      id
-      name
-      description
+      ageMin
+      ageMax
+      race
+      income
+      probability
+      education
+      obese
+      marriage
       createdAt
       updatedAt
       __typename
@@ -28,9 +38,14 @@ export const onUpdateTodo = /* GraphQL */ `
 export const onDeleteTodo = /* GraphQL */ `
   subscription OnDeleteTodo($filter: ModelSubscriptionTodoFilterInput) {
     onDeleteTodo(filter: $filter) {
-      id
-      name
-      description
+      ageMin
+      ageMax
+      race
+      income
+      probability
+      education
+      obese
+      marriage
       createdAt
       updatedAt
       __typename
