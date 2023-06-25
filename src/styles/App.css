@@ -45,7 +45,3 @@
     transform: rotate(360deg);
   }
 }
-
-.amplify-checkbox__icon[data-checked='true'] {
-  background-color: #3367ef;
-}
