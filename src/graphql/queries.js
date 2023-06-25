@@ -7,13 +7,12 @@ export const getTodo = /* GraphQL */ `
       ageMin
       ageMax
       race
-      income
+      MinimumIncome
       probability
       education
-      obese
-      marriage
-      createdAt
-      updatedAt
+      minimumHeight
+      isObese
+      isMarried
       __typename
     }
   }
@@ -29,13 +28,12 @@ export const listTodos = /* GraphQL */ `
         ageMin
         ageMax
         race
-        income
+        MinimumIncome
         probability
         education
-        obese
-        marriage
-        createdAt
-        updatedAt
+        minimumHeight
+        isObese
+        isMarried
         __typename
       }
       nextToken

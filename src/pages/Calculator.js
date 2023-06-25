@@ -5,6 +5,9 @@ import * as React from 'react';
 import { Card, Button, TextField, CheckboxField, SliderField, SelectField } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import 'animate.css';
+import { createTodo } from '../graphql/mutations';
+import { API } from 'aws-amplify';
+import { Authenticator } from '@aws-amplify/ui-react';
 
 function Calculator() {
   const [ageMin, setAgeMin] = React.useState();
@@ -58,6 +61,9 @@ function Calculator() {
   }
 
   const handleBuildMan = () => {
+
+    handleSubmit();
+
     console.log({
       ageMin,
       ageMax,
@@ -68,6 +74,30 @@ function Calculator() {
       isMarried,
       isObese
     });
+  }
+  
+  const handleSubmit = async () => {
+    try {
+      const input = {
+        ageMin,
+        ageMax,
+        minimumHeight,
+        race,
+        minimumEducation,
+        minimumIncome,
+        isMarried,
+        isObese
+      };
+  
+      const response = await API.graphql({
+        query: createTodo,
+        variables: { input },
+      });
+  
+      console.log('Todo created:', response.data.createTodo);
+    } catch (error) {
+      console.error('Error creating todo:', error);
+    }
   };
 
   return (
@@ -87,6 +117,16 @@ function Calculator() {
             style={{ width: '100px', height: '100px' }}
           />
         </div>
+
+        <Authenticator signUpAttributes={['phone_number']}>
+      {({ signOut, user }) => (
+        <main>
+          <h1>Hello {user.username}</h1>
+          <button onClick={signOut}>Sign out</button>
+        </main>
+      )}
+    </Authenticator>
+
 
         <div className="cardTopRow" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '20px' }}>
           <Card

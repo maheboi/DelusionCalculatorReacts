@@ -10,13 +10,12 @@ export const createTodo = /* GraphQL */ `
       ageMin
       ageMax
       race
-      income
+      MinimumIncome
       probability
       education
-      obese
-      marriage
-      createdAt
-      updatedAt
+      minimumHeight
+      isObese
+      isMarried
       __typename
     }
   }
@@ -30,13 +29,12 @@ export const updateTodo = /* GraphQL */ `
       ageMin
       ageMax
       race
-      income
+      MinimumIncome
       probability
       education
-      obese
-      marriage
-      createdAt
-      updatedAt
+      minimumHeight
+      isObese
+      isMarried
       __typename
     }
   }
@@ -50,13 +48,12 @@ export const deleteTodo = /* GraphQL */ `
       ageMin
       ageMax
       race
-      income
+      MinimumIncome
       probability
       education
-      obese
-      marriage
-      createdAt
-      updatedAt
+      minimumHeight
+      isObese
+      isMarried
       __typename
     }
   }
