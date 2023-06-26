@@ -1,0 +1,69 @@
+{
+  "censuscalc": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-calculatorreacts-censuscalc-134545-authRole",
+      "UnauthRoleArn": "arn:aws:iam::652149599343:role/amplify-calculatorreacts-censuscalc-134545-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::652149599343:role/amplify-calculatorreacts-censuscalc-134545-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-calculatorreacts-censuscalc-134545-deployment",
+      "UnauthRoleName": "amplify-calculatorreacts-censuscalc-134545-unauthRole",
+      "StackName": "amplify-calculatorreacts-censuscalc-134545",
+      "StackId": "arn:aws:cloudformation:us-east-1:652149599343:stack/amplify-calculatorreacts-censuscalc-134545/8125eb50-1388-11ee-b50f-0a6034c5eda9",
+      "AmplifyAppId": "du6939f0mcl75"
+    },
+    "categories": {
+      "storage": {
+        "AmplifyDataStoregt6hl4jiefgqrjh2ijnd4huzjadev": {
+          "tableName": "AmplifyDataStore-gt6hl4jiefgqrjh2ijnd4huzja-dev",
+          "region": "us-east-1",
+          "arn": "arn:aws:dynamodb:us-east-1:652149599343:table/AmplifyDataStore-gt6hl4jiefgqrjh2ijnd4huzja-dev",
+          "streamArn": "arn:aws:dynamodb:us-east-1:652149599343:table/AmplifyDataStore-gt6hl4jiefgqrjh2ijnd4huzja-dev/stream/2023-06-21T04:23:39.920",
+          "partitionKeyName": "ds_pk",
+          "partitionKeyType": "S",
+          "sortKeyName": "ds_sk",
+          "sortKeyType": "S"
+        }
+      },
+      "auth": {
+        "calculatorreacts2e8f1da6": {}
+      },
+      "api": {
+        "CensusCalcAPI": {}
+      }
+    }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-calculatorreacts-dev-200458-authRole",
+      "UnauthRoleArn": "arn:aws:iam::652149599343:role/amplify-calculatorreacts-dev-200458-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::652149599343:role/amplify-calculatorreacts-dev-200458-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-calculatorreacts-dev-200458-deployment",
+      "UnauthRoleName": "amplify-calculatorreacts-dev-200458-unauthRole",
+      "StackName": "amplify-calculatorreacts-dev-200458",
+      "StackId": "arn:aws:cloudformation:us-east-1:652149599343:stack/amplify-calculatorreacts-dev-200458/255ab7a0-122b-11ee-ab88-0a66479fb8c9",
+      "AmplifyAppId": "du6939f0mcl75"
+    },
+    "categories": {
+      "storage": {
+        "Todo22d3uzzolbentis6h5rqrxvcqmdev": {
+          "tableName": "Todo-22d3uzzolbentis6h5rqrxvcqm-dev",
+          "region": "us-east-1",
+          "arn": "arn:aws:dynamodb:us-east-1:652149599343:table/Todo-22d3uzzolbentis6h5rqrxvcqm-dev",
+          "streamArn": "arn:aws:dynamodb:us-east-1:652149599343:table/Todo-22d3uzzolbentis6h5rqrxvcqm-dev/stream/2023-06-23T07:05:55.883",
+          "partitionKeyName": "id",
+          "partitionKeyType": "S"
+        }
+      },
+      "api": {
+        "calculatorreacts": {}
+      },
+      "auth": {
+        "calculatorreactsdf221b1f": {}
+      },
+      "function": {
+        "CensusLamdaAPI": {}
+      }
+    }
+  }
+}
