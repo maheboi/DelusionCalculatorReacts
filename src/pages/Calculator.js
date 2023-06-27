@@ -1,4 +1,5 @@
-import logo from "../assets/Bag.png";
+import logo from "../assets/FF Logo Transparent.png";
+import catBag from "../assets/Bag.png";
 import "../styles/Calculator.css";
 import "../styles/customAnimations.css";
 import * as React from "react";
@@ -12,8 +13,9 @@ import {
   TextField,
   CheckboxField,
   SliderField,
-  SelectField,
-} from "@aws-amplify/ui-react";
+  SelectField
+} 
+from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import "animate.css";
 import { Amplify } from "aws-amplify";
@@ -21,6 +23,8 @@ import { Amplify } from "aws-amplify";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
+import Design from "../styles/Design.js";
+
 Amplify.configure(awsExports);
 
 function Calculator() {
@@ -218,302 +222,296 @@ function Calculator() {
   };
 
   return (
-    <div className="Calculator" style={{ justifyContent: "center" }}>
+    <div className="Calculator">
+      <Design className="Design" />
       <header className="Calculator-header">
-        <div style={{ justifyContent: "center", marginBottom: "50px" }}>
-          <p>
-            <code>Welcome to the Delusion Calculator</code>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <img
+              src={logo}
+              className="Calculator-logo"
+              alt="logo"
+            />
+            <img
+              src={catBag}
+              className="Calculator-catBag"
+              alt="catBag"
+              style={{ marginTop: "50px" }}
+            />
+          </div>
+          <p style={{ textAlign: "center" }}>
+            <code style={{ textAlign: "center", color: "black", fontWeight: "bold", textShadow: "0px 0px 4px white, 0px 0px 6px white, 0px 0px 8px white" }}>Welcome to the Delusion Calculator</code>
           </p>
-          <img
-            src={logo}
-            className="Calculator-logo"
-            alt="logo"
-            style={{ width: "100px", height: "100px" }}
-          />
         </div>
-        <Authenticator signUpAttributes={["phone_number"]}>
-          {({ signOut, user }) => (
-            <main>
-              <h1>Hello {user.username}</h1>
-              <button onClick={signOut}>Sign out</button>
-            </main>
-          )}
-        </Authenticator>
-        <div
-          className="cardTopRow"
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            gap: "20px",
-          }}
-        >
-          <Card
-            className="animate__animated animate__fadeInUp"
+        
+      </header>
+      <Card style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "1000px", height: "500px", borderRadius: "16px", backgroundColor: "rgba(48, 48, 48, 0.25)", boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)" }}>
+        <div>
+          <div
+            className="cardTopRow"
             style={{
               display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              borderRadius: "8px",
-              width: "300px",
-              height: "200px",
-            }}
-          >
-            <p style={{ color: "black" }}>Age</p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <TextField
-                placeholder="Minimum Age"
-                label="Minimum"
-                labelHidden
-                errorMessage="There is an error"
-                style={{ borderRadius: "0" }}
-                variation="quiet"
-                value={ageMin}
-                onChange={handleAgeMinChange}
-              />
-              <TextField
-                placeholder="Maximum Age"
-                label="Maximum"
-                labelHidden
-                errorMessage="There is an error"
-                style={{ borderRadius: "0" }}
-                variation="quiet"
-                value={ageMax}
-                onChange={handleAgeMaxChange}
-              />
-            </div>
-          </Card>
-          <Card
-            className="animate__animated animate__fadeInUp"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              borderRadius: "8px",
-              width: "300px",
-              height: "200px",
-            }}
-          >
-            <p style={{ color: "black" }}>Height</p>
-            <SelectField
-              placeholder="Minimum Height"
-              label="Height"
-              labelHidden
-              width="100%"
-              onChange={handleHeightChange}
-              options={[
-                "4'9",
-                "4'10",
-                "4'11",
-                "5'0",
-                "5'1",
-                "5'2",
-                "5'3",
-                "5'4",
-                "5'5",
-                "5'6",
-                "5'7",
-                "5'8",
-                "5'9",
-                "5'10",
-                "5'11",
-                "6'0",
-                "6'1",
-                "6'2",
-                "6'3",
-                "6'4",
-                "6'5",
-                "6'6",
-                "6'7",
-                "6'8",
-                "6'9",
-              ]}
-            ></SelectField>
-          </Card>
-          <Card
-            className="animate__animated animate__fadeInUp"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              borderRadius: "8px",
-              width: "300px",
-              height: "200px",
-            }}
-          >
-            <p style={{ color: "black" }}>Race</p>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "2fr 1fr",
-                  gridGap: "5px",
-                }}
-              >
-                <CheckboxField
-                  label="White"
-                  name="White"
-                  style={{ backgroundColor: "#3367ef" }}
-                  checked={race.includes("White")}
-                  onChange={handleRaceChange}
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: "20px"
+            }}>
+            <Card
+              className="Card-input animate__animated animate__fadeInUp"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                borderRadius: "8px",
+                width: "300px",
+                height: "200px"
+              }}>
+              <p style={{ color: "black" }}>Age</p>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <TextField
+                  placeholder="Minimum Age"
+                  label="Minimum"
+                  labelHidden
+                  errorMessage="There is an error"
+                  style={{ borderRadius: "0" }}
+                  variation="quiet"
+                  value={ageMin}
+                  onChange={handleAgeMinChange}
                 />
-                <CheckboxField
-                  label="Other"
-                  name="Other"
-                  style={{ backgroundColor: "#3367ef" }}
-                  checked={race.includes("Other")}
-                  onChange={handleRaceChange}
-                />
-                <CheckboxField
-                  label="Black"
-                  name="Black"
-                  style={{ backgroundColor: "#3367ef" }}
-                  checked={race.includes("Black")}
-                  onChange={handleRaceChange}
-                />
-                <CheckboxField
-                  label="Hispanic"
-                  name="Hispanic"
-                  style={{ backgroundColor: "#3367ef" }}
-                  checked={race.includes("Hispanic")}
-                  onChange={handleRaceChange}
-                />
-                <CheckboxField
-                  label="Asian"
-                  name="Asian"
-                  style={{ backgroundColor: "#3367ef" }}
-                  checked={race.includes("Asian")}
-                  onChange={handleRaceChange}
+                <TextField
+                  placeholder="Maximum Age"
+                  label="Maximum"
+                  labelHidden
+                  errorMessage="There is an error"
+                  style={{ borderRadius: "0" }}
+                  variation="quiet"
+                  value={ageMax}
+                  onChange={handleAgeMaxChange}
                 />
               </div>
-            </div>
-          </Card>
-        </div>
-
-        <div
-          className="cardBottomRow"
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            gap: "20px",
-            marginTop: "40px",
-          }}
-        >
-          <Card
-            className="animate__animated animate__backInUp"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              borderRadius: "8px",
-              width: "300px",
-              height: "200px",
-            }}
-          >
-            <p style={{ color: "black" }}>Education</p>
-            <SelectField
-              label="Education"
-              labelHidden
-              width="100%"
-              onChange={handleEducationChange}
-            >
-              <option value="Highschool Diploma">
-                Highschool Diploma or less
-              </option>
-              <option value="Associate's Degree">Associate's Degree</option>
-              <option value="Bachelor's Degree">Bachelor's Degree</option>
-              <option value="Master's Degree">Master's Degree</option>
-              <option value="Doctorate's Degree">Doctorate's Degree</option>
-            </SelectField>
-          </Card>
-          <Card
-            className="animate__animated animate__backInUp"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              borderRadius: "8px",
-              width: "300px",
-              height: "200px",
-            }}
-          >
-            <p style={{ color: "black" }}>Income</p>
-            <div
+            </Card>
+            <Card
+              className="animate__animated animate__fadeInUp"
               style={{
-                marginTop: "-20px",
-                width: "100%",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center",
                 alignItems: "center",
-              }}
-            >
-              <TextField
-                placeholder="Minimum Income"
-                value={minimumIncome}
-                onChange={(event) => handleIncomeChange(event.target.value)}
-                style={{ width: "80%" }}
-                variation="quiet"
-                min={0}
-                max={2000000}
-              />
-              <SliderField
-                max={2000000}
-                step={10000}
-                value={minimumIncome}
-                isValueHidden
-                onChange={handleIncomeChange}
-                width="80%"
-                filledTrackColor={"#3267f1"}
-              />
-            </div>
-          </Card>
-          <Card
-            className="animate__animated animate__backInUp"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              borderRadius: "8px",
-              width: "300px",
-            }}
-          >
-            <p style={{ color: "black" }}></p>
-            <div
+                borderRadius: "8px",
+                width: "300px",
+                height: "200px",
+              }}>
+              <p style={{ color: "black" }}>Height</p>
+              <SelectField
+                placeholder="Minimum Height"
+                label="Height"
+                labelHidden
+                width="100%"
+                onChange={handleHeightChange}
+                options={[
+                  "4'9",
+                  "4'10",
+                  "4'11",
+                  "5'0",
+                  "5'1",
+                  "5'2",
+                  "5'3",
+                  "5'4",
+                  "5'5",
+                  "5'6",
+                  "5'7",
+                  "5'8",
+                  "5'9",
+                  "5'10",
+                  "5'11",
+                  "6'0",
+                  "6'1",
+                  "6'2",
+                  "6'3",
+                  "6'4",
+                  "6'5",
+                  "6'6",
+                  "6'7",
+                  "6'8",
+                  "6'9",
+                ]} />
+            </Card>
+            <Card
+              className="animate__animated animate__fadeInUp"
               style={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
-              }}
-            >
-              <CheckboxField
-                label="Married?"
-                name="marriage"
-                style={{ backgroundColor: "#3367ef" }}
-                onChange={handleMarriedChange}
-              />
-              <CheckboxField
-                label="Obese?"
-                name="Obesity"
-                className="amplify-checkbox_icon"
-                onChange={handleObeseChange}
-              />
-            </div>
-          </Card>
+                alignItems: "center",
+                borderRadius: "8px",
+                width: "300px",
+                height: "200px",
+              }}>
+              <p style={{ color: "black" }}>Race</p>
+              <div style={{ display: "flex", flexDirection: "column", marginTop: "-20px" }}>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "2fr 1fr",
+                    gridGap: "5px",
+                  }}>
+                  <CheckboxField
+                    label="White"
+                    name="White"
+                    style={{ backgroundColor: "#3367ef" }}
+                    checked={race.includes("White")}
+                    onChange={handleRaceChange}
+                  />
+                  <CheckboxField
+                    label="Black"
+                    name="Black"
+                    style={{ backgroundColor: "#3367ef" }}
+                    checked={race.includes("Black")}
+                    onChange={handleRaceChange}
+                  />
+                  <CheckboxField
+                    label="Hispanic"
+                    name="Hispanic"
+                    style={{ backgroundColor: "#3367ef" }}
+                    checked={race.includes("Hispanic")}
+                    onChange={handleRaceChange}
+                  />
+                  <CheckboxField
+                    label="Asian"
+                    name="Asian"
+                    style={{ backgroundColor: "#3367ef" }}
+                    checked={race.includes("Asian")}
+                    onChange={handleRaceChange}
+                  />
+                </div>
+                <div style= {{ display: "flex", justifyContent: "center" }}>
+                  <CheckboxField
+                    label="Other"
+                    name="Other"
+                    style={{ backgroundColor: "#3367ef" }}
+                    checked={race.includes("Other")}
+                    onChange={handleRaceChange}
+                  />
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          <div
+            className="cardBottomRow"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: "20px",
+              marginTop: "40px"
+            }}>
+            <Card
+              className="animate__animated animate__backInUp"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                borderRadius: "8px",
+                width: "300px",
+                height: "200px",
+              }}>
+              <p style={{ color: "black" }}>Education</p>
+              <SelectField
+                placeholder="Minimum Education"
+                label="Education"
+                labelHidden
+                width="100%"
+                onChange={handleEducationChange}
+              >
+                <option value="Highschool Diploma">Highschool Diploma or less</option>
+                <option value="Associate's Degree">Associate's Degree</option>
+                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                <option value="Master's Degree">Master's Degree</option>
+                <option value="Doctorate's Degree">Doctorate's Degree</option>
+              </SelectField>
+            </Card>
+            <Card
+              className="animate__animated animate__backInUp"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                borderRadius: "8px",
+                width: "300px",
+                height: "200px",
+              }}>
+              <p style={{ color: "black" }}>Income</p>
+              <div
+                style={{
+                  marginTop: "-20px",
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}>
+                <TextField
+                  placeholder="Minimum Income"
+                  value={minimumIncome}
+                  onChange={(event) => handleIncomeChange(event.target.value)}
+                  style={{ width: "80%" }}
+                  variation="quiet"
+                  min={0}
+                  max={2000000}
+                />
+                <SliderField
+                  max={2000000}
+                  step={10000}
+                  value={minimumIncome}
+                  isValueHidden
+                  onChange={handleIncomeChange}
+                  width="80%"
+                  filledTrackColor={"#3267f1"}
+                />
+              </div>
+            </Card>
+            <Card
+              className="animate__animated animate__backInUp"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                borderRadius: "8px",
+                width: "300px",
+              }}>
+              <p style={{ color: "black" }}></p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                }}>
+                <CheckboxField
+                  label="Married?"
+                  name="marriage"
+                  style={{ backgroundColor: "#3367ef" }}
+                  onChange={handleMarriedChange}
+                />
+                <CheckboxField
+                  label="Obese?"
+                  name="Obesity"
+                  className="amplify-checkbox_icon"
+                  onChange={handleObeseChange}
+                />
+              </div>
+            </Card>
+          </div>
         </div>
-        <div style={{ marginTop: "20px" }}>
-          <Button
-            className="animate__animated animate__fadeIn animate__delay-1s"
-            variation="destructive"
-            loadingText="Building..."
-            style={{ backgroundColor: "#d40203" }}
-            onClick={handleBuildMan}
-          >
-            Build Your Man
-          </Button>
-        </div>
-      </header>
+      </Card>
+      <div style={{ marginTop: "20px" }}>
+        <Button
+          className="animate__animated animate__fadeIn animate__delay-1s"
+          variation="destructive"
+          loadingText="Building..."
+          style={{ backgroundColor: "#d40203" }}
+          onClick={handleBuildMan}
+        >
+          Build Your Man
+        </Button>
+      </div>
     </div>
   );
 }
