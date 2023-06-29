@@ -3,21 +3,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: #141414;
   min-height: 100vh;
-  padding: 20px;
+  padding: 25px;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-color:#141414;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+    radial-gradient(at 5% 200%, #006eeb9a 0, transparent 50%), 
+    radial-gradient(at 100% -75%, #d402029a 0, transparent 50%);
 }
 
 .Calculator-logo {
-  height: 40vmin;
+  height: 200px;
+}
+
+.Calculator-catBag {
+  width: 100px;
+  height: 100px;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .Calculator-logo {
+  .Calculator-catBag {
     animation: App-logo-spin infinite 20s linear;
   }
 }
