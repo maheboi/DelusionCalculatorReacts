@@ -7,7 +7,7 @@ function App() {
   return (
     <Authenticator.Provider>
       <View>
-        <Routing />;
+        <Routing />
       </View>
     </Authenticator.Provider>
   );

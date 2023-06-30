@@ -300,7 +300,9 @@ function Calculator() {
 
   return (
     <div className="Calculator">
-      <Design className="Design" />
+      <div style={{ height: "110%" }}>
+        <Design className="Design" />
+      </div>
       <header className="Calculator-header">
         <Authenticator>
           {({ signOut, user }) => (
