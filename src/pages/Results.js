@@ -25,7 +25,7 @@ function Results() {
   const queryParams = new URLSearchParams(location.search);
   const probability = queryParams.get("probability");
   console.log(probability);
-  const finalProbability = parseFloat(probability).toFixed(3) * 100;
+  const finalProbability = parseFloat(probability * 100).toFixed(4);
   let bagscore;
   if (finalProbability < 1) {
     bagscore = 5;

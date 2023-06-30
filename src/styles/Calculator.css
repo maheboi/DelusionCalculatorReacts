@@ -3,15 +3,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
   padding: 25px;
   font-size: calc(10px + 2vmin);
   color: white;
-  background-color:#141414;
-  background-image: 
-    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 5% 200%, #006eeb9a 0, transparent 50%), 
-    radial-gradient(at 100% -75%, #d402029a 0, transparent 50%);
+  background-color: #141414;
+  background-image: radial-gradient(
+      circle at top left,
+      hsla(253, 16%, 7%, 1) 0%,
+      transparent 100%
+    ),
+    radial-gradient(circle at 5% 200%, #006eeb9a 0%, transparent 100%),
+    radial-gradient(circle at top right, #d402029a 0%, transparent 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .Calculator-logo {
@@ -54,6 +59,6 @@
   }
 }
 
-.amplify-checkbox__icon[data-checked='true'] {
+.amplify-checkbox__icon[data-checked="true"] {
   background-color: #3367ef;
 }

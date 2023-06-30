@@ -7,6 +7,7 @@ import { createTodo } from "../graphql/mutations";
 import { API } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
+import NHANES from "../assets/NHANES2020.csv";
 
 import {
   Card,
@@ -102,86 +103,157 @@ function Calculator() {
   };
 
   const handleSubmit = async () => {
-    const dataFile = "./public/NHANES2020 SHORT.csv";
-
-    const selectedHeightInCm = convertHeightToCm(minimumHeight);
-    Papa.parse(dataFile, {
-      download: true,
-      header: true,
-      complete: function (results, file) {
-        console.log("Parsing complete:", results, file);
-        console.log("Errors:", results.errors);
-        console.log(dataFile);
-        const filteredData = results.data.filter(
-          (row) =>
-            race.includes(row.RIDRETH3) &&
-            parseFloat(row.BMXHT) >= selectedHeightInCm // convert feet to cm
-        );
-        console.log(filteredData.length);
-      },
-    });
-
-    let marriageValue = "";
-    if (isMarried === false) {
-      marriageValue = "1:7";
-    }
-
-    if (isMarried === true) {
-      marriageValue = "4:7";
-    }
-
-    let raceValue = "";
-
-    if (race.includes("White")) {
-      raceValue += "1,";
-    }
-
-    if (race.includes("Black")) {
-      raceValue += "2,";
-    }
-
-    if (race.includes("Asian")) {
-      raceValue += "4,";
-    }
-
-    if (race.includes("Hispanic")) {
-      raceValue += "18,21,15,24,12,9,14,";
-    }
-
-    if (race.includes("Other")) {
-      raceValue += "26,8,23,25,11,10,17,5,19,7,16,3,22,";
-    }
-
-    let educationValue = "";
-
-    switch (minimumEducation) {
-      case "Highschool Diploma":
-        educationValue = "31";
-        break;
-      case "Associate's Degree":
-        educationValue = "42";
-        break;
-      case "Bachelor's Degree":
-        educationValue = "43";
-        break;
-      case "Master's Degree":
-        educationValue = "44";
-        break;
-      case "Doctorate's Degree":
-        educationValue = "46";
-        break;
-      default:
-        // Handle the case when the education value is not matched
-        break;
-    }
-
     try {
-      const url = `https://api.census.gov/data/2022/cps/asec/mar?tabulate=weight(MARSUPWT)&col+A_SEX&for=state:*&A_AGE=${ageMin}:${ageMax}&A_HGA=${educationValue}:46&AGI=${minimumIncome}:2000000&A_MARITL=${marriageValue}&PRDTRACE=${raceValue}`;
+      let heightBMIProbability;
+      let num,
+        den = 0;
+      let BMI = 99999;
+
+      if (isObese === true) {
+        BMI = 30;
+      }
+
+      let selectedHeightInCm = 0;
+      let racePass = [];
+
+      if (minimumHeight === "") {
+        selectedHeightInCm = 0;
+      } else {
+        selectedHeightInCm = convertHeightToCm(minimumHeight);
+      }
+      if (race.length === 0) {
+        racePass = ["White", "Hispanic", "Other", "Asian", "Black"];
+      } else {
+        racePass = race;
+      }
+
+      const heightBMIProbabilityPromise = new Promise((resolve, reject) => {
+        Papa.parse(NHANES, {
+          download: true,
+          header: true,
+          delimiter: ",",
+          complete: function (result, file) {
+            console.log("Parsing complete:", result, file);
+            console.log("Errors:", result.errors);
+            console.log(result.data);
+            console.log(BMI);
+            const filteredData = result.data.filter(
+              (row) =>
+                racePass.includes(row.RIDRETH3) &&
+                parseFloat(row.BMXHT) >= selectedHeightInCm &&
+                row.BMXBMI < BMI
+            );
+
+            den = parseFloat(filteredData.length);
+            console.log("Filtered Array" + filteredData.length);
+            console.log("Filtered Array:");
+
+            const unfilteredCountForRace = result.data.filter(
+              (row) =>
+                racePass.includes(row.RIDRETH3) &&
+                parseFloat(row.BMXHT) > 0 &&
+                row.BMXBMI >= 0
+            );
+
+            num = parseFloat(unfilteredCountForRace.length);
+            console.log("Total Count Array" + unfilteredCountForRace.length);
+
+            heightBMIProbability = den / num;
+            console.log("Height Probability" + heightBMIProbability);
+            resolve(heightBMIProbability);
+          },
+        });
+      });
+
+      let marriageValue = "";
+      if (isMarried === false) {
+        marriageValue = "1:7";
+      }
+
+      if (isMarried === true) {
+        marriageValue = "4:7";
+      }
+
+      let raceValue = "";
+
+      if (race.includes("White")) {
+        raceValue += "1,";
+      }
+
+      if (race.includes("Black")) {
+        raceValue += "2,";
+      }
+
+      if (race.includes("Asian")) {
+        raceValue += "4,";
+      }
+
+      if (race.includes("Hispanic")) {
+        raceValue += "18,21,15,24,12,9,14,";
+      }
+
+      if (race.includes("Other")) {
+        raceValue += "26,8,23,25,11,10,17,5,19,7,16,3,22,";
+      }
+
+      let educationValue = "";
+
+      switch (minimumEducation) {
+        case "Highschool Diploma":
+          educationValue = "31";
+          break;
+        case "Associate's Degree":
+          educationValue = "42";
+          break;
+        case "Bachelor's Degree":
+          educationValue = "43";
+          break;
+        case "Master's Degree":
+          educationValue = "44";
+          break;
+        case "Doctorate's Degree":
+          educationValue = "46";
+          break;
+        default:
+          // Handle the case when the education value is not matched
+          break;
+      }
+
+      // Wait for the heightBMIProbabilityPromise to complete
+      heightBMIProbability = await heightBMIProbabilityPromise;
+      let ageMinPass,
+        ageMaxPass,
+        minimumIncomePass = "";
+      if (typeof ageMin === "undefined") {
+        ageMinPass = "18:";
+      } else {
+        ageMinPass = ageMin + ":";
+      }
+      if (typeof ageMax === "undefined") {
+        ageMaxPass = "85";
+      } else {
+        ageMaxPass = ageMax;
+      }
+      if (educationValue === "") {
+        educationValue = "31:46";
+      } else {
+        educationValue = educationValue + ":46";
+      }
+      if (typeof minimumIncome === "undefined") {
+        minimumIncomePass = "0:2000000";
+      } else {
+        minimumIncomePass = minimumIncome + ":2000000";
+      }
+      if (raceValue === "") {
+        raceValue = "1:26";
+      }
+      //Grab the Census Calculations
+      const url = `https://api.census.gov/data/2022/cps/asec/mar?tabulate=weight(MARSUPWT)&col+A_SEX&for=state:*&A_AGE=${ageMinPass}${ageMaxPass}&A_HGA=${educationValue}&AGI=${minimumIncomePass}&A_MARITL=${marriageValue}&PRDTRACE=${raceValue}`;
       const response = await fetch(url);
       console.log("Denominator URL: " + url);
       const data = await response.json();
 
-      const url2 = `https://api.census.gov/data/2022/cps/asec/mar?tabulate=weight(MARSUPWT)&col+A_SEX&for=state:*&A_AGE=18:85`;
+      const url2 = `https://api.census.gov/data/2022/cps/asec/mar?tabulate=weight(MARSUPWT)&col+A_SEX&for=state:*&A_AGE=18:85&A_HGA=31:46&AGI=0:2000000&A_MARITL=1:7&PRDTRACE=1:26`;
       const response2 = await fetch(url2);
       console.log("Numurator URL: " + url2);
       const data2 = await response2.json();
@@ -189,11 +261,19 @@ function Calculator() {
       console.log("Denominator" + data);
       console.log("Numerator" + data2);
 
-      const probability = data[1][1] / data2[1][1];
+      const censusProbability = data[1][1] / data2[1][1];
+      console.log(
+        "Census Probability: " +
+          censusProbability +
+          " Height and BMI Probability: " +
+          heightBMIProbability
+      );
+
+      const probability = censusProbability * heightBMIProbability;
       const urlpass = `/Results?probability=${encodeURIComponent(
         probability.toString()
       )}`;
-      navigate(urlpass);
+      await navigate(urlpass);
 
       const input = {
         ageMin,
@@ -338,31 +418,25 @@ function Calculator() {
                 width="100%"
                 onChange={handleHeightChange}
                 options={[
-                  "4'9",
-                  "4'10",
-                  "4'11",
-                  "5'0",
-                  "5'1",
-                  "5'2",
-                  "5'3",
-                  "5'4",
-                  "5'5",
-                  "5'6",
-                  "5'7",
-                  "5'8",
-                  "5'9",
-                  "5'10",
-                  "5'11",
-                  "6'0",
-                  "6'1",
-                  "6'2",
-                  "6'3",
-                  "6'4",
-                  "6'5",
                   "6'6",
-                  "6'7",
-                  "6'8",
-                  "6'9",
+                  "6'5",
+                  "6'4",
+                  "6'3",
+                  "6'2",
+                  "6'1",
+                  "6'0",
+                  "5'11",
+                  "5'10",
+                  "5'9",
+                  "5'8",
+                  "5'7",
+                  "5'6",
+                  "5'5",
+                  "5'4",
+                  "5'3",
+                  "5'2",
+                  "5'1",
+                  "5'0",
                 ]}
               />
             </Card>
@@ -533,13 +607,13 @@ function Calculator() {
                 }}
               >
                 <CheckboxField
-                  label="Married?"
+                  label="Exclude Married Men?"
                   name="marriage"
                   style={{ backgroundColor: "#3367ef" }}
                   onChange={handleMarriedChange}
                 />
                 <CheckboxField
-                  label="Obese?"
+                  label="Exclude Obese Men?"
                   name="Obesity"
                   className="amplify-checkbox_icon"
                   onChange={handleObeseChange}
