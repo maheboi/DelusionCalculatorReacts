@@ -17,6 +17,8 @@ export const createTodo = /* GraphQL */ `
       isObese
       isMarried
       id
+      createdAt
+      updatedAt
       __typename
     }
   }
@@ -37,6 +39,8 @@ export const updateTodo = /* GraphQL */ `
       isObese
       isMarried
       id
+      createdAt
+      updatedAt
       __typename
     }
   }
@@ -57,6 +61,8 @@ export const deleteTodo = /* GraphQL */ `
       isObese
       isMarried
       id
+      createdAt
+      updatedAt
       __typename
     }
   }

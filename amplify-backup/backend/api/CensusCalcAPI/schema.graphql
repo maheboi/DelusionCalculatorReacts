@@ -9,7 +9,7 @@ type Todo @model {
   race: String
   minimumIncome: Int
   probability: Float
-  minimumEducation: String
+  education: String
   minimumHeight: String
   isObese: Boolean
   isMarried: Boolean

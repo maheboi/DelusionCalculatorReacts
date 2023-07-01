@@ -29,12 +29,6 @@
       },
       "api": {
         "CensusCalcAPI": {}
-      },
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "du6939f0mcl75",
-          "type": "manual"
-        }
       }
     }
   },

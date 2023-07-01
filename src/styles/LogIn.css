@@ -1,4 +1,4 @@
-.check {
+.LogIn {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -8,11 +8,8 @@
   font-size: calc(10px + 2vmin);
   color: white;
   background-color: #141414;
-  background-image: radial-gradient(
-      at 0% 0%,
-      hsla(253, 16%, 7%, 1) 0,
-      transparent 50%
-    ),
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
     radial-gradient(at 5% 200%, #006eeb9a 0, transparent 50%),
     radial-gradient(at 100% -75%, #d402029a 0, transparent 50%);
 }

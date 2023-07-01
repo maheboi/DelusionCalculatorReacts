@@ -14,6 +14,8 @@ export const getTodo = /* GraphQL */ `
       isObese
       isMarried
       id
+      createdAt
+      updatedAt
       __typename
     }
   }
@@ -36,6 +38,8 @@ export const listTodos = /* GraphQL */ `
         isObese
         isMarried
         id
+        createdAt
+        updatedAt
         __typename
       }
       nextToken
