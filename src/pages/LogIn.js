@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import "../styles/LogIn.css";
 
-function LogIn() {
+export const LogIn = () => {
   const navigate = useNavigate();
   const authState = useAuthenticator((context) => [context.authStatus]);
-  console.log(authState.authStatus);
 
   useEffect(() => {
     if (authState.authStatus === "authenticated") {
@@ -17,12 +16,8 @@ function LogIn() {
 
   return (
     <div className="LogIn">
-      <Authenticator
-        signUpConfig={{ hiddenDefaults: ["phone_number"] }}
-        onAuthUIStateChange={(nextAuthState, data) =>
-          console.log(`Auth state changed: ${nextAuthState}`)
-        }>
-        {({ signOut, user }) => (
+      <Authenticator signUpConfig={{ hiddenDefaults: ["phone_number"] }}>
+        {({ signOut }) => (
           <main>
             <button onClick={signOut}>Sign out</button>
           </main>
@@ -30,6 +25,4 @@ function LogIn() {
       </Authenticator>
     </div>
   );
-}
-
-export default LogIn;
+};

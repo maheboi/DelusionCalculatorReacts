@@ -1,9 +1,9 @@
 import React from "react";
-import Routing from "./pages/Routing.js";
+import { Routing } from "./pages/Routing.js";
 import { Authenticator, View } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css"; // default theme
 
-function App() {
+export const App = () => {
   return (
     <Authenticator.Provider>
       <View>
@@ -11,6 +11,4 @@ function App() {
       </View>
     </Authenticator.Provider>
   );
-}
-
-export default App;
+};
