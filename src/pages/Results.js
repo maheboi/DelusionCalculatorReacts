@@ -17,8 +17,6 @@ import catBagImage from "../styles/catbag-removebg-preview.png";
 
 Amplify.configure(awsExports);
 
-// Use the probability value as needed in the Results page componen
-
 export const Results = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -62,10 +60,9 @@ export const Results = () => {
   } else if (bagscore === 5) {
     message = "You got the whole chat laughing right now... 😂";
   } else {
-    message = "based."; // Set a default message if bagscore is outside the range 1-5
+    message = "Based.";
   }
 
-  // Within your component
   let img1, img2, img3, img4, img5;
 
   if (bagscore === 0) {
