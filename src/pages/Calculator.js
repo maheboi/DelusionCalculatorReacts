@@ -2,12 +2,12 @@ import logo from "../assets/FF Logo Transparent.png";
 import catBag from "../assets/Bag.png";
 import "../styles/Calculator.css";
 import "../styles/customAnimations.css";
-import * as React from "react";
+import React, { useState } from "react";
 import { createTodo } from "../graphql/mutations";
 import { API } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
-import NHANES from "../assets/NHANES2020.csv"
+import NHANES from "../assets/NHANES2020.csv";
 
 import {
   Card,
@@ -15,68 +15,66 @@ import {
   TextField,
   CheckboxField,
   SliderField,
-  SelectField
-}
-
-from "@aws-amplify/ui-react";
+  SelectField,
+} from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import "animate.css";
 import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
-import Design from "../styles/Design.js";
+// import Design from "../styles/Design.js";
 
 Amplify.configure(awsExports);
 
 function Calculator() {
-  const [ageMin, setAgeMin] = React.useState();
-  const [ageMax, setAgeMax] = React.useState();
-  const [minimumHeight, setMinimumHeight] = React.useState("");
-  const [race, setRace] = React.useState([]);
-  const [minimumEducation, setMinimumEducation] = React.useState("");
-  const [minimumIncome, setMinimumIncome] = React.useState();
-  const [isMarried, setIsMarried] = React.useState(false);
-  const [isObese, setIsObese] = React.useState(false);
+  const [ageMin, setAgeMin] = useState();
+  const [ageMax, setAgeMax] = useState();
+  const [minimumHeight, setMinimumHeight] = useState("");
+  const [race, setRace] = useState([]);
+  const [minimumEducation, setMinimumEducation] = useState("");
+  const [minimumIncome, setMinimumIncome] = useState();
+  const [isMarried, setIsMarried] = useState(false);
+  const [isObese, setIsObese] = useState(false);
   const navigate = useNavigate();
 
-  const [minInput, setMinInput] = React.useState('');
-  const [maxInput, setMaxInput] = React.useState('');
+  const [minInput, setMinInput] = useState("");
+  const [maxInput, setMaxInput] = useState("");
 
   const handleAgeMinChange = (event) => {
     const value = event.target.value;
     setMinInput(value);
-    setAgeMin(value); // Update ageMin directly
+    setAgeMin(value);
   };
-  
+
   const handleAgeMaxChange = (event) => {
     const value = event.target.value;
     setMaxInput(value);
-    setAgeMax(value); // Update ageMax directly
+    setAgeMax(value);
   };
-  
+
   const handleMinBlur = () => {
     let value = parseInt(minInput, 10);
     if (isNaN(value) || value < 18) {
       value = 18;
-      setMinInput('18'); // Reset input value to '18'
+      setMinInput("18");
     } else if (value > 85) {
       value = 85;
-      setMinInput('85'); // Reset input value to '85'
+      setMinInput("85");
     }
     setAgeMin(value);
   };
-  
+
   const handleMaxBlur = () => {
     let value = parseInt(maxInput, 10);
     if (isNaN(value) || value > 85) {
       value = 85;
-      setMaxInput('85'); // Reset input value to '85'
+      setMaxInput("85");
     } else if (value < 18) {
       value = 18;
-      setMaxInput('18'); // Reset input value to '18'
+      setMaxInput("18");
     }
     setAgeMax(value);
-  };  
+  };
 
   const handleHeightChange = (event) => {
     setMinimumHeight(event.target.value);
@@ -121,16 +119,6 @@ function Calculator() {
 
   const handleBuildMan = () => {
     handleSubmit();
-    console.log({
-      ageMin,
-      ageMax,
-      minimumHeight,
-      race: race.join(", "),
-      minimumEducation,
-      minimumIncome,
-      isMarried,
-      isObese,
-    });
   };
 
   const handleSubmit = async () => {
@@ -163,11 +151,7 @@ function Calculator() {
           download: true,
           header: true,
           delimiter: ",",
-          complete: function (result, file) {
-            console.log("Parsing complete:", result, file);
-            console.log("Errors:", result.errors);
-            console.log(result.data);
-            console.log(BMI);
+          complete: function (result) {
             const filteredData = result.data.filter(
               (row) =>
                 racePass.includes(row.RIDRETH3) &&
@@ -176,8 +160,6 @@ function Calculator() {
             );
 
             den = parseFloat(filteredData.length);
-            console.log("Filtered Array" + filteredData.length);
-            console.log("Filtered Array:");
 
             const unfilteredCountForRace = result.data.filter(
               (row) =>
@@ -187,10 +169,8 @@ function Calculator() {
             );
 
             num = parseFloat(unfilteredCountForRace.length);
-            console.log("Total Count Array" + unfilteredCountForRace.length);
 
             heightBMIProbability = den / num;
-            console.log("Height Probability" + heightBMIProbability);
             resolve(heightBMIProbability);
           },
         });
@@ -281,30 +261,19 @@ function Calculator() {
       //Grab the Census Calculations
       const url = `https://api.census.gov/data/2022/cps/asec/mar?tabulate=weight(MARSUPWT)&col+A_SEX&for=state:*&A_AGE=${ageMinPass}${ageMaxPass}&A_HGA=${educationValue}&AGI=${minimumIncomePass}&A_MARITL=${marriageValue}&PRDTRACE=${raceValue}%`;
       const response = await fetch(url);
-      console.log("Denominator URL: " + url);
       const data = await response.json();
 
       const url2 = `https://api.census.gov/data/2022/cps/asec/mar?tabulate=weight(MARSUPWT)&col+A_SEX&for=state:*&A_AGE=${ageMinPass}${ageMaxPass}&A_HGA=31:46&AGI=0:2000000&A_MARITL=1:7&PRDTRACE=1:26%`;
       const response2 = await fetch(url2);
-      console.log("Numurator URL: " + url2);
       const data2 = await response2.json();
 
-      console.log("Denominator" + data);
-      console.log("Numerator" + data2);
-
       const censusProbability = data[1][1] / data2[1][1];
-      console.log(
-        "Census Probability: " +
-          censusProbability +
-          " Height and BMI Probability: " +
-          heightBMIProbability
-      );
 
       const probability = censusProbability * heightBMIProbability;
       const urlpass = `/Results?probability=${encodeURIComponent(
         probability.toString()
       )}&ageMin=${ageMin}&ageMax=${ageMax}`;
-      await navigate(urlpass);
+      navigate(urlpass);
 
       const input = {
         ageMin,
@@ -322,24 +291,23 @@ function Calculator() {
         query: createTodo,
         variables: { input },
       });
-
-      console.log("Todo created:", createTodoResponse.data.createTodo);
-    } catch (error) {
-      console.error("Error creating todo:", error);
-    }
+    } catch (error) {}
   };
 
   return (
     <div className="Calculator">
-      <Design className="Design" />
+      {/* <Design className="Design" /> */}
       <header className="Calculator-header">
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <img
-              src={logo}
-              className="Calculator-logo"
-              alt="logo"
-            />
+            <img src={logo} className="Calculator-logo" alt="logo" />
             <img
               src={catBag}
               className="Calculator-catBag"
@@ -348,11 +316,33 @@ function Calculator() {
             />
           </div>
           <p style={{ textAlign: "center" }}>
-            <code style={{ textAlign: "center", color: "black", fontWeight: "bold", textShadow: "0px 0px 4px white, 0px 0px 6px white, 0px 0px 8px white" }}>Welcome to the Delusion Calculator</code>
+            <code
+              style={{
+                textAlign: "center",
+                color: "black",
+                fontWeight: "bold",
+                textShadow:
+                  "0px 0px 4px white, 0px 0px 6px white, 0px 0px 8px white",
+              }}
+            >
+              Welcome to the Delusion Calculator
+            </code>
           </p>
         </div>
       </header>
-      <Card className="Box-trim animate__animated animate__fadeIn" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "1000px", height: "500px", borderRadius: "16px", backgroundColor: "rgba(48, 48, 48, 0.25)", boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)" }}>
+      <Card
+        className="Box-trim animate__animated animate__fadeIn mb-3"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "1000px",
+          height: "500px",
+          borderRadius: "16px",
+          backgroundColor: "rgba(48, 48, 48, 0.25)",
+          boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)",
+        }}
+      >
         <div>
           <div
             className="cardTopRow"
@@ -360,18 +350,20 @@ function Calculator() {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: "20px"
-            }}>
+              gap: "20px",
+            }}
+          >
             <Card
-              className="Card-input animate__animated animate__fadeInUp"
+              className="Card-input animate__animated animate__fadeInUp mb-3"
               style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 borderRadius: "8px",
                 width: "300px",
-                height: "200px"
-              }}>
+                height: "200px",
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Age</p>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <TextField
@@ -407,7 +399,8 @@ function Calculator() {
                 borderRadius: "8px",
                 width: "300px",
                 height: "200px",
-              }}>
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Height</p>
               <SelectField
                 placeholder="Minimum Height"
@@ -434,7 +427,7 @@ function Calculator() {
                   "5'3",
                   "5'2",
                   "5'1",
-                  "5'0"
+                  "5'0",
                 ]}
               />
             </Card>
@@ -447,15 +440,23 @@ function Calculator() {
                 borderRadius: "8px",
                 width: "300px",
                 height: "200px",
-              }}>
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Race</p>
-              <div style={{ display: "flex", flexDirection: "column", marginTop: "-20px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "-20px",
+                }}
+              >
                 <div
                   style={{
                     display: "grid",
                     gridTemplateColumns: "2fr 1fr",
                     gridGap: "5px",
-                  }}>
+                  }}
+                >
                   <CheckboxField
                     label="White"
                     name="White"
@@ -485,7 +486,7 @@ function Calculator() {
                     onChange={handleRaceChange}
                   />
                 </div>
-                <div style= {{ display: "flex", justifyContent: "center" }}>
+                <div style={{ display: "flex", justifyContent: "center" }}>
                   <CheckboxField
                     label="Other"
                     name="Other"
@@ -505,8 +506,9 @@ function Calculator() {
               flexDirection: "row",
               justifyContent: "center",
               gap: "20px",
-              marginTop: "40px"
-            }}>
+              marginTop: "40px",
+            }}
+          >
             <Card
               className="animate__animated animate__backInUp"
               style={{
@@ -516,7 +518,8 @@ function Calculator() {
                 borderRadius: "8px",
                 width: "300px",
                 height: "200px",
-              }}>
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Education</p>
               <SelectField
                 placeholder="Minimum Education"
@@ -541,7 +544,8 @@ function Calculator() {
                 borderRadius: "8px",
                 width: "300px",
                 height: "200px",
-              }}>
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Income</p>
               <div
                 style={{
@@ -551,7 +555,8 @@ function Calculator() {
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <TextField
                   placeholder="Minimum Income"
                   value={minimumIncome}
@@ -580,14 +585,16 @@ function Calculator() {
                 alignItems: "center",
                 borderRadius: "8px",
                 width: "300px",
-              }}>
+              }}
+            >
               <p style={{ color: "black" }}></p>
               <div
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-start",
-                }}>
+                }}
+              >
                 <CheckboxField
                   label="Exclude Married?"
                   name="marriage"

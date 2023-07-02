@@ -28,11 +28,11 @@ function Results() {
   const defaultAgeMax = 85;
   const ageMin = queryParams.get("ageMin");
   const ageMax = queryParams.get("ageMax");
-  const minAge = ageMin && !isNaN(ageMin) ? parseInt(ageMin, 10) : defaultAgeMin;
-  const maxAge = ageMax && !isNaN(ageMax) ? parseInt(ageMax, 10) : defaultAgeMax;
+  const minAge =
+    ageMin && !isNaN(ageMin) ? parseInt(ageMin, 10) : defaultAgeMin;
+  const maxAge =
+    ageMax && !isNaN(ageMax) ? parseInt(ageMax, 10) : defaultAgeMax;
   const navigate = useNavigate();
-
-  console.log(probability);
 
   let bagscore;
   if (finalProbability < 1) {
@@ -111,14 +111,24 @@ function Results() {
 
   const handleReset = () => {
     navigate("/calculator");
-  }
+  };
 
   return (
     <div className="Calculator">
       <Design className="Design" />
       <header className="Calculator-header">
         <p style={{ textAlign: "center" }}>
-          <code style={{ textAlign: "center", color: "black", fontWeight: "bold", textShadow: "0px 0px 4px white, 0px 0px 6px white, 0px 0px 8px white" }}>Results</code>
+          <code
+            style={{
+              textAlign: "center",
+              color: "black",
+              fontWeight: "bold",
+              textShadow:
+                "0px 0px 4px white, 0px 0px 6px white, 0px 0px 8px white",
+            }}
+          >
+            Results
+          </code>
         </p>
       </header>
       <Card
@@ -132,78 +142,89 @@ function Results() {
           borderRadius: "16px",
           backgroundColor: "rgba(48, 48, 48, 0.25)",
           boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)",
-        }}>
-          <Card
-            className="Card-input animate__animated animate__fadeInUp"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              borderRadius: "8px",
-              width: "900px",
-              height: "450px",
-            }}>
-            <div>
-              <p>
-                <TypeAnimation
-                  sequence={[
-                    6000,
-                    `${finalProbability}%`
-                  ]}
-                  wrapper="span"
-                  speed={50}
-                  style={{ fontWeight: "bold", fontSize: "50px", color: "red" }}
-                />
-              </p>
-              <p style={{ color: "black" }}>of <span style={{ fontWeight: "bold" }}>Men</span> between {minAge} to {maxAge} meet your requirements</p>
+        }}
+      >
+        <Card
+          className="Card-input animate__animated animate__fadeInUp"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            borderRadius: "8px",
+            width: "900px",
+            height: "450px",
+          }}
+        >
+          <div>
+            <p>
+              <TypeAnimation
+                sequence={[6000, `${finalProbability}%`]}
+                wrapper="span"
+                speed={50}
+                style={{ fontWeight: "bold", fontSize: "50px", color: "red" }}
+              />
+            </p>
+            <p style={{ color: "black" }}>
+              of <span style={{ fontWeight: "bold" }}>Men</span> between{" "}
+              {minAge} to {maxAge} meet your requirements
+            </p>
+          </div>
+          <div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <img
+                src={img1}
+                className="Card-input animate__animated animate__fadeInUp animate__delay-1s"
+                alt="catBag1"
+                style={{ marginTop: "20px", width: "10%", height: "10%" }}
+              />
+              <img
+                src={img2}
+                className="Card-input animate__animated animate__fadeInUp animate__delay-2s"
+                alt="catBag1"
+                style={{ marginTop: "20px", width: "10%", height: "10%" }}
+              />
+              <img
+                src={img3}
+                className="Card-input animate__animated animate__fadeInUp animate__delay-3s"
+                alt="catBag1"
+                style={{ marginTop: "20px", width: "10%", height: "10%" }}
+              />
+              <img
+                src={img4}
+                className="Card-input animate__animated animate__fadeInUp animate__delay-4s"
+                alt="catBag1"
+                style={{ marginTop: "20px", width: "10%", height: "10%" }}
+              />
+              <img
+                src={img5}
+                className="Card-input animate__animated animate__fadeInUp animate__delay-5s"
+                alt="catBag1"
+                style={{ marginTop: "20px", width: "10%", height: "10%" }}
+              />
             </div>
-            <div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <img
-                  src={img1}
-                  className="Card-input animate__animated animate__fadeInUp animate__delay-1s"
-                  alt="catBag1"
-                  style={{ marginTop: "20px", width: "10%", height: "10%" }}
-                />
-                <img
-                  src={img2}
-                  className="Card-input animate__animated animate__fadeInUp animate__delay-2s"
-                  alt="catBag1"
-                  style={{ marginTop: "20px", width: "10%", height: "10%" }}
-                />
-                <img
-                  src={img3}
-                  className="Card-input animate__animated animate__fadeInUp animate__delay-3s"
-                  alt="catBag1"
-                  style={{ marginTop: "20px", width: "10%", height: "10%" }}
-                />
-                <img
-                  src={img4}
-                  className="Card-input animate__animated animate__fadeInUp animate__delay-4s"
-                  alt="catBag1"
-                  style={{ marginTop: "20px", width: "10%", height: "10%" }}
-                />
-                <img
-                  src={img5}
-                  className="Card-input animate__animated animate__fadeInUp animate__delay-5s"
-                  alt="catBag1"
-                  style={{ marginTop: "20px", width: "10%", height: "10%" }}
-                />
-              </div>
-              <p style={{ color: "black", fontWeight: "bold", fontSize: "20px", textAlign: "center" }}>
-                <TypeAnimation
-                  sequence={[
-                    6000,
-                    message,
-                  ]}
-                  wrapper="span"
-                  speed={50}
-                  style={{ color: "black", fontWeight: "bold", fontSize: "20px", textAlign: "center" }}
-                  cursor={false}
-                />
-              </p>
-            </div>
-          </Card>
+            <p
+              style={{
+                color: "black",
+                fontWeight: "bold",
+                fontSize: "20px",
+                textAlign: "center",
+              }}
+            >
+              <TypeAnimation
+                sequence={[6000, message]}
+                wrapper="span"
+                speed={50}
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  textAlign: "center",
+                }}
+                cursor={false}
+              />
+            </p>
+          </div>
+        </Card>
       </Card>
       <div style={{ marginTop: "20px" }}>
         <Button
