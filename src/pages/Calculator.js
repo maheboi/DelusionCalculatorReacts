@@ -7,7 +7,9 @@ import { createTodo } from "../graphql/mutations";
 import { API } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
-import NHANES from "../assets/NHANES2020.csv"
+import NHANES from "../assets/NHANES2020.csv";
+import { FaInfo } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
 import {
   Card,
@@ -15,10 +17,9 @@ import {
   TextField,
   CheckboxField,
   SliderField,
-  SelectField
-}
-
-from "@aws-amplify/ui-react";
+  SelectField,
+  Text,
+} from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import "animate.css";
 import { Amplify } from "aws-amplify";
@@ -39,47 +40,51 @@ function Calculator() {
   const [isObese, setIsObese] = React.useState(false);
   const navigate = useNavigate();
 
-  const [minInput, setMinInput] = React.useState('');
-  const [maxInput, setMaxInput] = React.useState('');
+  const [minInput, setMinInput] = React.useState("");
+  const [maxInput, setMaxInput] = React.useState("");
 
   const handleAgeMinChange = (event) => {
     const value = event.target.value;
     setMinInput(value);
     setAgeMin(value); // Update ageMin directly
   };
-  
+
   const handleAgeMaxChange = (event) => {
     const value = event.target.value;
     setMaxInput(value);
     setAgeMax(value); // Update ageMax directly
   };
-  
+
   const handleMinBlur = () => {
     let value = parseInt(minInput, 10);
     if (isNaN(value) || value < 18) {
       value = 18;
-      setMinInput('18'); // Reset input value to '18'
+      setMinInput("18"); // Reset input value to '18'
     } else if (value > 85) {
       value = 85;
-      setMinInput('85'); // Reset input value to '85'
+      setMinInput("85"); // Reset input value to '85'
     }
     setAgeMin(value);
   };
-  
+
   const handleMaxBlur = () => {
     let value = parseInt(maxInput, 10);
     if (isNaN(value) || value > 85) {
       value = 85;
-      setMaxInput('85'); // Reset input value to '85'
+      setMaxInput("85"); // Reset input value to '85'
     } else if (value < 18) {
       value = 18;
-      setMaxInput('18'); // Reset input value to '18'
+      setMaxInput("18"); // Reset input value to '18'
     }
     setAgeMax(value);
-  };  
+  };
 
   const handleHeightChange = (event) => {
     setMinimumHeight(event.target.value);
+  };
+
+  const handleToInfo = (event) => {
+    navigate("/Info");
   };
 
   const handleRaceChange = (event) => {
@@ -120,7 +125,6 @@ function Calculator() {
   }
 
   const handleBuildMan = () => {
-    handleSubmit();
     console.log({
       ageMin,
       ageMax,
@@ -131,6 +135,7 @@ function Calculator() {
       isMarried,
       isObese,
     });
+    handleSubmit();
   };
 
   const handleSubmit = async () => {
@@ -333,13 +338,16 @@ function Calculator() {
     <div className="Calculator">
       <Design className="Design" />
       <header className="Calculator-header">
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <img
-              src={logo}
-              className="Calculator-logo"
-              alt="logo"
-            />
+            <img src={logo} className="Calculator-logo" alt="logo" />
             <img
               src={catBag}
               className="Calculator-catBag"
@@ -348,11 +356,34 @@ function Calculator() {
             />
           </div>
           <p style={{ textAlign: "center" }}>
-            <code style={{ textAlign: "center", color: "black", fontWeight: "bold", textShadow: "0px 0px 4px white, 0px 0px 6px white, 0px 0px 8px white" }}>Welcome to the Delusion Calculator</code>
+            <code
+              style={{
+                textAlign: "center",
+                color: "black",
+                fontWeight: "bold",
+                textShadow:
+                  "0px 0px 4px white, 0px 0px 6px white, 0px 0px 8px white",
+              }}
+            >
+              Welcome to the Delusion Calculator
+            </code>
           </p>
         </div>
       </header>
-      <Card className="Box-trim animate__animated animate__fadeIn" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "1000px", height: "500px", borderRadius: "16px", backgroundColor: "rgba(48, 48, 48, 0.25)", boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)" }}>
+
+      <Card
+        className="Box-trim animate__animated animate__fadeIn"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "1000px",
+          height: "500px",
+          borderRadius: "16px",
+          backgroundColor: "rgba(48, 48, 48, 0.25)",
+          boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)",
+        }}
+      >
         <div>
           <div
             className="cardTopRow"
@@ -360,8 +391,9 @@ function Calculator() {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              gap: "20px"
-            }}>
+              gap: "20px",
+            }}
+          >
             <Card
               className="Card-input animate__animated animate__fadeInUp"
               style={{
@@ -370,8 +402,9 @@ function Calculator() {
                 alignItems: "center",
                 borderRadius: "8px",
                 width: "300px",
-                height: "200px"
-              }}>
+                height: "200px",
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Age</p>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <TextField
@@ -407,7 +440,8 @@ function Calculator() {
                 borderRadius: "8px",
                 width: "300px",
                 height: "200px",
-              }}>
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Height</p>
               <SelectField
                 placeholder="Minimum Height"
@@ -434,7 +468,7 @@ function Calculator() {
                   "5'3",
                   "5'2",
                   "5'1",
-                  "5'0"
+                  "5'0",
                 ]}
               />
             </Card>
@@ -447,15 +481,23 @@ function Calculator() {
                 borderRadius: "8px",
                 width: "300px",
                 height: "200px",
-              }}>
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Race</p>
-              <div style={{ display: "flex", flexDirection: "column", marginTop: "-20px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "-20px",
+                }}
+              >
                 <div
                   style={{
                     display: "grid",
                     gridTemplateColumns: "2fr 1fr",
                     gridGap: "5px",
-                  }}>
+                  }}
+                >
                   <CheckboxField
                     label="White"
                     name="White"
@@ -485,7 +527,7 @@ function Calculator() {
                     onChange={handleRaceChange}
                   />
                 </div>
-                <div style= {{ display: "flex", justifyContent: "center" }}>
+                <div style={{ display: "flex", justifyContent: "center" }}>
                   <CheckboxField
                     label="Other"
                     name="Other"
@@ -505,8 +547,9 @@ function Calculator() {
               flexDirection: "row",
               justifyContent: "center",
               gap: "20px",
-              marginTop: "40px"
-            }}>
+              marginTop: "40px",
+            }}
+          >
             <Card
               className="animate__animated animate__backInUp"
               style={{
@@ -516,7 +559,8 @@ function Calculator() {
                 borderRadius: "8px",
                 width: "300px",
                 height: "200px",
-              }}>
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Education</p>
               <SelectField
                 placeholder="Minimum Education"
@@ -541,7 +585,8 @@ function Calculator() {
                 borderRadius: "8px",
                 width: "300px",
                 height: "200px",
-              }}>
+              }}
+            >
               <p style={{ color: "black", fontWeight: "bold" }}>Income</p>
               <div
                 style={{
@@ -551,7 +596,8 @@ function Calculator() {
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <TextField
                   placeholder="Minimum Income"
                   value={minimumIncome}
@@ -580,14 +626,16 @@ function Calculator() {
                 alignItems: "center",
                 borderRadius: "8px",
                 width: "300px",
-              }}>
+              }}
+            >
               <p style={{ color: "black" }}></p>
               <div
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-start",
-                }}>
+                }}
+              >
                 <CheckboxField
                   label="Exclude Married?"
                   name="marriage"
@@ -605,6 +653,7 @@ function Calculator() {
           </div>
         </div>
       </Card>
+
       <div style={{ marginTop: "20px" }}>
         <Button
           className="animate__animated animate__fadeIn animate__delay-1s"
@@ -616,6 +665,145 @@ function Calculator() {
           Build Your Man
         </Button>
       </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginLeft: "1200px",
+          marginTop: "-45px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            position: "absolute",
+            top: "20px",
+            right: "20px",
+          }}
+        >
+          <Button
+            className="animate__animated animate__fadeIn animate__delay-1s"
+            variation="destructive"
+            loadingText="Loading..."
+            style={{
+              backgroundColor: "#3367ef",
+              marginRight: "10px",
+              borderRadius: "50%",
+            }}
+            onClick={handleToInfo}
+          >
+            <FaInfo />
+          </Button>
+          <Text
+            color={"white"}
+            marginRight={"20px"}
+            className="animate__animated animate__fadeIn animate__delay-1s"
+          >
+            Info
+          </Text>
+        </div>
+
+        <Text
+          color={"white"}
+          marginRight={"-20px"}
+          className="animate__animated animate__fadeIn animate__delay-1s"
+          style={{
+            position: "absolute",
+            bottom: "60px",
+            left: "20px",
+            fontSize: ".45em",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            lineHeight: "1.5em",
+          }}
+        >
+          Live search using the{" "}
+          <a
+            href="https://www.census.gov/programs-surveys/cps/data/tables.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "rgba(255, 105, 180, 1)" }}
+          >
+            2023 Current Population Survey
+          </a>{" "}
+          from the US Census Bureau and the{" "}
+          <a
+            href="https://www.cdc.gov/nchs/nhanes/index.htm"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "rgba(255, 105, 180, 1)" }}
+          >
+            National Health and Nutrition Examination Survey
+          </a>{" "}
+          from the Center for Disease Control (CDC).
+        </Text>
+      </div>
+
+      <Card
+        className="Box-trim animate__animated animate__fadeIn"
+        style={{
+          width: "175px",
+          height: "125px",
+          borderRadius: "32px",
+          backgroundColor: "rgba(48, 48, 48, 0.25)",
+          boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)",
+          position: "absolute",
+          top: "20px",
+          left: "20px",
+          padding: "20px",
+          fontSize: ".45em",
+        }}
+      >
+        <h2 style={{ margin: "0", marginBottom: "10px", fontSize: ".95em" }}>
+          Full Stack Devs
+        </h2>
+        <ul style={{ listStyleType: "none", padding: "0", margin: "0" }}>
+          <li style={{ marginBottom: "5px" }}>
+            <a
+              href="https://www.instagram.com/ceosecretorder/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "rgba(255, 105, 180, 1)",
+                textDecoration: "none",
+              }}
+            >
+              <FaInstagram style={{ marginRight: "5px" }} />
+              @ceosecretorder
+            </a>
+          </li>
+          <li style={{ marginBottom: "5px" }}>
+            <a
+              href="https://www.instagram.com/frediosos/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "rgba(255, 105, 180, 1)",
+                textDecoration: "none",
+              }}
+            >
+              <FaInstagram style={{ marginRight: "5px" }} />
+              @frediosos
+            </a>
+          </li>
+          <li style={{ marginBottom: "5px" }}>
+            <a
+              href="https://www.instagram.com/sean.lattimore/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "rgba(255, 105, 180, 1)",
+                textDecoration: "none",
+              }}
+            >
+              <FaInstagram style={{ marginRight: "5px" }} />
+              @sean.lattimore
+            </a>
+          </li>
+        </ul>
+      </Card>
     </div>
   );
 }

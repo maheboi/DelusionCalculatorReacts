@@ -4,32 +4,32 @@ import { useNavigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import "../styles/LogIn.css";
 
+import { Auth } from "aws-amplify";
+
 function LogIn() {
   const navigate = useNavigate();
+
   const authState = useAuthenticator((context) => [context.authStatus]);
   console.log(authState.authStatus);
 
   useEffect(() => {
-    if (authState.authStatus === "authenticated") {
-      navigate("/Calculator");
-    }
+    const signInAndNavigate = async () => {
+      if (authState.authStatus === "authenticated") {
+        navigate("/Calculator");
+      } else {
+        try {
+          await Auth.signIn("icor13no@gmail.com", "12345678");
+          navigate("/Calculator");
+        } catch (error) {
+          console.log("Error signing in:", error);
+        }
+      }
+    };
+
+    signInAndNavigate();
   }, [authState.authStatus, navigate]);
 
-  return (
-    <div className="LogIn">
-      <Authenticator
-        signUpConfig={{ hiddenDefaults: ["phone_number"] }}
-        onAuthUIStateChange={(nextAuthState, data) =>
-          console.log(`Auth state changed: ${nextAuthState}`)
-        }>
-        {({ signOut, user }) => (
-          <main>
-            <button onClick={signOut}>Sign out</button>
-          </main>
-        )}
-      </Authenticator>
-    </div>
-  );
+  return <div className="LogIn"></div>;
 }
 
 export default LogIn;
