@@ -3,7 +3,7 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import img from "../assets/Bag.png";
 
-const Design = () => {
+export const Design = () => {
   const particlesInit = useCallback(async (engine) => {
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -95,5 +95,3 @@ const Design = () => {
     />
   );
 };
-
-export default Design;

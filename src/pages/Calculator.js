@@ -22,7 +22,7 @@ import "animate.css";
 import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
-// import Design from "../styles/Design.js";
+import { Design } from "../styles/Design.js";
 
 Amplify.configure(awsExports);
 
@@ -296,7 +296,7 @@ export const Calculator = () => {
 
   return (
     <div className="Calculator">
-      {/* <Design className="Design" /> */}
+      <Design className="Design" />
       <header className="Calculator-header">
         <div
           style={{
