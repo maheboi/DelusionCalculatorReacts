@@ -287,7 +287,7 @@ export const Calculator = () => {
         isObese,
       };
 
-      const createTodoResponse = await API.graphql({
+      await API.graphql({
         query: createTodo,
         variables: { input },
       });
