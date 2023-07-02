@@ -1,0 +1,7 @@
+.animate__animated.animate__backInUp {
+    --animate-delay: 0.5;
+}
+
+.Box-trim.animate__animated.animate__fadeIn {
+    --animate-delay: 1s;
+}
