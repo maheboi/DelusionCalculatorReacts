@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import "../styles/LogIn.css";
 
-function LogIn() {
+export const LogIn = () => {
   const navigate = useNavigate();
   const authState = useAuthenticator((context) => [context.authStatus]);
 
@@ -25,6 +25,4 @@ function LogIn() {
       </Authenticator>
     </div>
   );
-}
-
-export default LogIn;
+};

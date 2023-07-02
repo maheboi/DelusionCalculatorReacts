@@ -10,7 +10,7 @@ import "animate.css";
 import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
-import Design from "../styles/Design.js";
+import { Design } from "../styles/Design.js";
 import { useLocation } from "react-router-dom";
 import emptyCatBagImage from "../styles/empty_catbag-removebg-preview.png";
 import catBagImage from "../styles/catbag-removebg-preview.png";
@@ -19,7 +19,7 @@ Amplify.configure(awsExports);
 
 // Use the probability value as needed in the Results page componen
 
-function Results() {
+export const Results = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const probability = queryParams.get("probability");
@@ -239,6 +239,4 @@ function Results() {
       </div>
     </div>
   );
-}
-
-export default Results;
+};

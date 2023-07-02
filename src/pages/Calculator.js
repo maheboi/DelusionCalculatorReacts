@@ -26,7 +26,7 @@ import awsExports from "../aws-exports";
 
 Amplify.configure(awsExports);
 
-function Calculator() {
+export const Calculator = () => {
   const [ageMin, setAgeMin] = useState();
   const [ageMax, setAgeMax] = useState();
   const [minimumHeight, setMinimumHeight] = useState("");
@@ -625,6 +625,4 @@ function Calculator() {
       </div>
     </div>
   );
-}
-
-export default Calculator;
+};
