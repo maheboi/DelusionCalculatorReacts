@@ -1,6 +1,6 @@
 import logo from "../assets/FF Logo Transparent.png";
 import catBag from "../assets/Bag.png";
-import "../styles/Calculator.css";
+
 import "../styles/customAnimations.css";
 import * as React from "react";
 import { createTodo } from "../graphql/mutations";
@@ -23,10 +23,9 @@ import {
 import "@aws-amplify/ui-react/styles.css";
 import "animate.css";
 import { Amplify } from "aws-amplify";
-import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
 import Design from "../styles/Design.js";
-
+import "../styles/Calculator.css";
 Amplify.configure(awsExports);
 
 function Calculator() {
@@ -371,40 +370,10 @@ function Calculator() {
         </div>
       </header>
 
-      <Card
-        className="Box-trim animate__animated animate__fadeIn"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "1000px",
-          height: "500px",
-          borderRadius: "16px",
-          backgroundColor: "rgba(48, 48, 48, 0.25)",
-          boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)",
-        }}
-      >
+      <Card className="card-Container Box-trim animate__animated animate__fadeIn">
         <div>
-          <div
-            className="cardTopRow"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              gap: "20px",
-            }}
-          >
-            <Card
-              className="Card-input animate__animated animate__fadeInUp"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                borderRadius: "8px",
-                width: "300px",
-                height: "200px",
-              }}
-            >
+          <div className="Row">
+            <Card className="card animate__animated animate__fadeInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Age</p>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <TextField
@@ -431,17 +400,7 @@ function Calculator() {
                 />
               </div>
             </Card>
-            <Card
-              className="animate__animated animate__fadeInUp"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                borderRadius: "8px",
-                width: "300px",
-                height: "200px",
-              }}
-            >
+            <Card className="card animate__animated animate__fadeInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Height</p>
               <SelectField
                 placeholder="Minimum Height"
@@ -472,32 +431,10 @@ function Calculator() {
                 ]}
               />
             </Card>
-            <Card
-              className="animate__animated animate__fadeInUp"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                borderRadius: "8px",
-                width: "300px",
-                height: "200px",
-              }}
-            >
+            <Card className="card animate__animated animate__fadeInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Race</p>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  marginTop: "-20px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "2fr 1fr",
-                    gridGap: "5px",
-                  }}
-                >
+              <div className="row-flex">
+                <div className="checkBox">
                   <CheckboxField
                     label="White"
                     name="White"
@@ -526,8 +463,6 @@ function Calculator() {
                     checked={race.includes("Asian")}
                     onChange={handleRaceChange}
                   />
-                </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
                   <CheckboxField
                     label="Other"
                     name="Other"
@@ -540,27 +475,8 @@ function Calculator() {
             </Card>
           </div>
 
-          <div
-            className="cardBottomRow"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              gap: "20px",
-              marginTop: "40px",
-            }}
-          >
-            <Card
-              className="animate__animated animate__backInUp"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                borderRadius: "8px",
-                width: "300px",
-                height: "200px",
-              }}
-            >
+          <div className="Row cardBottomRow">
+            <Card className="card animate__animated animate__backInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Education</p>
               <SelectField
                 placeholder="Minimum Education"
@@ -576,28 +492,9 @@ function Calculator() {
                 <option value="Doctorate's Degree">Doctorate's Degree</option>
               </SelectField>
             </Card>
-            <Card
-              className="animate__animated animate__backInUp"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                borderRadius: "8px",
-                width: "300px",
-                height: "200px",
-              }}
-            >
+            <Card className="card animate__animated animate__backInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Income</p>
-              <div
-                style={{
-                  marginTop: "-20px",
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <div className="income-Fields">
                 <TextField
                   placeholder="Minimum Income"
                   value={minimumIncome}
@@ -618,18 +515,10 @@ function Calculator() {
                 />
               </div>
             </Card>
-            <Card
-              className="animate__animated animate__backInUp"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                borderRadius: "8px",
-                width: "300px",
-              }}
-            >
+            <Card className="card animate__animated animate__backInUp">
               <p style={{ color: "black" }}></p>
               <div
+                className="marriedObeseFields"
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -707,17 +596,7 @@ function Calculator() {
         <Text
           color={"white"}
           marginRight={"-20px"}
-          className="animate__animated animate__fadeIn animate__delay-1s"
-          style={{
-            position: "absolute",
-            bottom: "60px",
-            left: "20px",
-            fontSize: ".45em",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            lineHeight: "1.5em",
-          }}
+          className="citationText animate__animated animate__fadeIn animate__delay-1s"
         >
           Live search using the{" "}
           <a
@@ -741,21 +620,7 @@ function Calculator() {
         </Text>
       </div>
 
-      <Card
-        className="Box-trim animate__animated animate__fadeIn"
-        style={{
-          width: "175px",
-          height: "125px",
-          borderRadius: "32px",
-          backgroundColor: "rgba(48, 48, 48, 0.25)",
-          boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)",
-          position: "absolute",
-          top: "20px",
-          left: "20px",
-          padding: "20px",
-          fontSize: ".45em",
-        }}
-      >
+      <Card className="ig-Card animate__animated animate__fadeIn">
         <h2 style={{ margin: "0", marginBottom: "10px", fontSize: ".95em" }}>
           Full Stack Devs
         </h2>
