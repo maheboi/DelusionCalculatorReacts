@@ -1,7 +1,7 @@
 import "../styles/Calculator.css";
 import "../styles/customAnimations.css";
 import { TypeAnimation } from "react-type-animation";
-import * as React from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Card, Button } from "@aws-amplify/ui-react";
@@ -14,10 +14,9 @@ import Design from "../styles/Design.js";
 import { useLocation } from "react-router-dom";
 import emptyCatBagImage from "../styles/empty_catbag-removebg-preview.png";
 import catBagImage from "../styles/catbag-removebg-preview.png";
+import "../styles/Results.css";
 
 Amplify.configure(awsExports);
-
-// Use the probability value as needed in the Results page componen
 
 function Results() {
   const location = useLocation();
@@ -75,7 +74,6 @@ function Results() {
     message = "based."; // Set a default message if bagscore is outside the range 1-5
   }
 
-  // Within your component
   let img1, img2, img3, img4, img5;
 
   if (bagscore === 0) {
@@ -127,121 +125,71 @@ function Results() {
     <div className="Calculator">
       <Design className="Design" />
       <header className="Calculator-header">
-        <p style={{ textAlign: "center" }}>
-          <code
-            style={{
-              textAlign: "center",
-              color: "black",
-              fontWeight: "bold",
-              textShadow:
-                "0px 0px 4px white, 0px 0px 6px white, 0px 0px 8px white",
-            }}
-          >
-            Results
-          </code>
+        <p className="results-title">
+          <code className="results-title-text">Results</code>
         </p>
       </header>
-      <Card
-        className="Box-trim animate__animated animate__fadeIn"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "1000px",
-          height: "500px",
-          borderRadius: "16px",
-          backgroundColor: "rgba(48, 48, 48, 0.25)",
-          boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)",
-        }}
-      >
-        <Card
-          className="Card-input animate__animated animate__fadeInUp"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            borderRadius: "8px",
-            width: "900px",
-            height: "450px",
-          }}
-        >
+      <Card className="Card-container Box-trim animate__animated animate__fadeIn">
+        <Card className="Card-inner Card-input animate__animated animate__fadeInUp">
           <div>
             <p>
               <TypeAnimation
                 sequence={[6000, `${finalProbability}%`]}
                 wrapper="span"
                 speed={50}
-                style={{ fontWeight: "bold", fontSize: "50px", color: "red" }}
+                className="probability-text"
               />
             </p>
-            <p style={{ color: "black" }}>
-              of <span style={{ fontWeight: "bold" }}>Men</span> between{" "}
-              {minAge} to {maxAge} meet your requirements
+            <p className="result-message">
+              of <span className="men-bold">Men</span> between {minAge} to{" "}
+              {maxAge} meet your requirements
             </p>
           </div>
           <div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="image-row">
               <img
                 src={img1}
-                className="Card-input animate__animated animate__fadeInUp animate__delay-1s"
+                className="cat-bag-image Card-input animate__animated animate__fadeInUp animate__delay-1s"
                 alt="catBag1"
-                style={{ marginTop: "20px", width: "10%", height: "10%" }}
               />
               <img
                 src={img2}
-                className="Card-input animate__animated animate__fadeInUp animate__delay-2s"
+                className="cat-bag-image Card-input animate__animated animate__fadeInUp animate__delay-2s"
                 alt="catBag1"
-                style={{ marginTop: "20px", width: "10%", height: "10%" }}
               />
               <img
                 src={img3}
-                className="Card-input animate__animated animate__fadeInUp animate__delay-3s"
+                className="cat-bag-image Card-input animate__animated animate__fadeInUp animate__delay-3s"
                 alt="catBag1"
-                style={{ marginTop: "20px", width: "10%", height: "10%" }}
               />
               <img
                 src={img4}
-                className="Card-input animate__animated animate__fadeInUp animate__delay-4s"
+                className="cat-bag-image Card-input animate__animated animate__fadeInUp animate__delay-4s"
                 alt="catBag1"
-                style={{ marginTop: "20px", width: "10%", height: "10%" }}
               />
               <img
                 src={img5}
-                className="Card-input animate__animated animate__fadeInUp animate__delay-5s"
+                className="cat-bag-image Card-input animate__animated animate__fadeInUp animate__delay-5s"
                 alt="catBag1"
-                style={{ marginTop: "20px", width: "10%", height: "10%" }}
               />
             </div>
-            <p
-              style={{
-                color: "black",
-                fontWeight: "bold",
-                fontSize: "20px",
-                textAlign: "center",
-              }}
-            >
+            <p className="message">
               <TypeAnimation
                 sequence={[6000, message]}
                 wrapper="span"
                 speed={50}
-                style={{
-                  color: "black",
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                  textAlign: "center",
-                }}
+                className="message"
                 cursor={false}
               />
             </p>
           </div>
         </Card>
       </Card>
-      <div style={{ marginTop: "20px" }}>
+      <div className="div-reset-button">
         <Button
-          className="animate__animated animate__fadeIn animate__delay-5s"
+          className="reset-button animate__animated animate__fadeIn animate__delay-5s"
           variation="destructive"
           loadingText="Loading..."
-          style={{ backgroundColor: "#d40203" }}
           onClick={handleReset}
         >
           Reset

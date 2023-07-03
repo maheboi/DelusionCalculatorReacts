@@ -4,6 +4,7 @@ import "@aws-amplify/ui-react/styles.css";
 import { Button, Text } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import Design from "../styles/Design.js";
+import "../styles/Info.css";
 
 function Info() {
   const handleBackHome = (event) => {
@@ -153,10 +154,9 @@ function Info() {
           </p>
         </Text>
         <Button
-          className="animate__animated animate__fadeIn"
+          className="return-button animate__animated animate__fadeIn"
           variation="destructive"
           loadingText="Loading..."
-          style={{ backgroundColor: "#d40203" }}
           onClick={handleBackHome}
         >
           Return
