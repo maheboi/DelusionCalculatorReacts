@@ -1,6 +1,6 @@
 import logo from "../assets/FF Logo Transparent.png";
 import catBag from "../assets/Bag.png";
-
+import "../styles/Calculator.css";
 import "../styles/customAnimations.css";
 import * as React from "react";
 import { createTodo } from "../graphql/mutations";
@@ -23,9 +23,10 @@ import {
 import "@aws-amplify/ui-react/styles.css";
 import "animate.css";
 import { Amplify } from "aws-amplify";
+import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
 import Design from "../styles/Design.js";
-import "../styles/Calculator.css";
+
 Amplify.configure(awsExports);
 
 function Calculator() {
@@ -337,22 +338,10 @@ function Calculator() {
     <div className="Calculator">
       <Design className="Design" />
       <header className="Calculator-header">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "center" }}>
+        <div>
+          <div>
             <img src={logo} className="Calculator-logo" alt="logo" />
-            <img
-              src={catBag}
-              className="Calculator-catBag"
-              alt="catBag"
-              style={{ marginTop: "50px" }}
-            />
+            <img src={catBag} className="Calculator-catBag" alt="catBag" />
           </div>
           <p style={{ textAlign: "center" }}>
             <code
@@ -370,12 +359,12 @@ function Calculator() {
         </div>
       </header>
 
-      <Card className="card-Container Box-trim animate__animated animate__fadeIn">
+      <Card className="container container-fluid Box-trim animate__animated animate__fadeIn">
         <div>
-          <div className="Row">
-            <Card className="card animate__animated animate__fadeInUp">
+          <div className="cardTopRow row">
+            <Card className="col Card-input animate__animated animate__fadeInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Age</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div>
                 <TextField
                   placeholder="Minimum Age"
                   label="Minimum"
@@ -400,7 +389,7 @@ function Calculator() {
                 />
               </div>
             </Card>
-            <Card className="card animate__animated animate__fadeInUp">
+            <Card className="col animate__animated animate__fadeInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Height</p>
               <SelectField
                 placeholder="Minimum Height"
@@ -431,7 +420,7 @@ function Calculator() {
                 ]}
               />
             </Card>
-            <Card className="card animate__animated animate__fadeInUp">
+            <Card className="col animate__animated animate__fadeInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Race</p>
               <div className="row-flex">
                 <div className="checkBox">
@@ -475,8 +464,8 @@ function Calculator() {
             </Card>
           </div>
 
-          <div className="Row cardBottomRow">
-            <Card className="card animate__animated animate__backInUp">
+          <div className="row cardBottomRow">
+            <Card className="col animate__animated animate__backInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Education</p>
               <SelectField
                 placeholder="Minimum Education"
@@ -492,9 +481,9 @@ function Calculator() {
                 <option value="Doctorate's Degree">Doctorate's Degree</option>
               </SelectField>
             </Card>
-            <Card className="card animate__animated animate__backInUp">
+            <Card className="col animate__animated animate__backInUp">
               <p style={{ color: "black", fontWeight: "bold" }}>Income</p>
-              <div className="income-Fields">
+              <div>
                 <TextField
                   placeholder="Minimum Income"
                   value={minimumIncome}
@@ -515,16 +504,9 @@ function Calculator() {
                 />
               </div>
             </Card>
-            <Card className="card animate__animated animate__backInUp">
+            <Card className="col animate__animated animate__backInUp">
               <p style={{ color: "black" }}></p>
-              <div
-                className="marriedObeseFields"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                }}
-              >
+              <div className="marriedObeseFields">
                 <CheckboxField
                   label="Exclude Married?"
                   name="marriage"
@@ -548,38 +530,17 @@ function Calculator() {
           className="animate__animated animate__fadeIn animate__delay-1s"
           variation="destructive"
           loadingText="Loading..."
-          style={{ backgroundColor: "#d40203" }}
           onClick={handleBuildMan}
         >
           Build Your Man
         </Button>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginLeft: "1200px",
-          marginTop: "-45px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-          }}
-        >
+      <div>
+        <div>
           <Button
             className="animate__animated animate__fadeIn animate__delay-1s"
             variation="destructive"
             loadingText="Loading..."
-            style={{
-              backgroundColor: "#3367ef",
-              marginRight: "10px",
-              borderRadius: "50%",
-            }}
             onClick={handleToInfo}
           >
             <FaInfo />
@@ -596,14 +557,13 @@ function Calculator() {
         <Text
           color={"white"}
           marginRight={"-20px"}
-          className="citationText animate__animated animate__fadeIn animate__delay-1s"
+          className="animate__animated animate__fadeIn animate__delay-1s"
         >
           Live search using the{" "}
           <a
             href="https://www.census.gov/programs-surveys/cps/data/tables.html"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "rgba(255, 105, 180, 1)" }}
           >
             2023 Current Population Survey
           </a>{" "}
@@ -620,12 +580,10 @@ function Calculator() {
         </Text>
       </div>
 
-      <Card className="ig-Card animate__animated animate__fadeIn">
-        <h2 style={{ margin: "0", marginBottom: "10px", fontSize: ".95em" }}>
-          Full Stack Devs
-        </h2>
-        <ul style={{ listStyleType: "none", padding: "0", margin: "0" }}>
-          <li style={{ marginBottom: "5px" }}>
+      <Card className="Box-trim animate__animated animate__fadeIn">
+        <h2>Full Stack Devs</h2>
+        <ul>
+          <li>
             <a
               href="https://www.instagram.com/ceosecretorder/"
               target="_blank"
@@ -639,7 +597,7 @@ function Calculator() {
               @ceosecretorder
             </a>
           </li>
-          <li style={{ marginBottom: "5px" }}>
+          <li>
             <a
               href="https://www.instagram.com/frediosos/"
               target="_blank"
