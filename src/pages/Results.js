@@ -32,16 +32,19 @@ function Results() {
   } else {
     finalProbability = (probability * 100).toFixed(4);
   }
-  const defaultAgeMin = 18;
-  const defaultAgeMax = 85;
+  const raceString = queryParams.get("race");
+  const races = raceString.split(",");
   const ageMin = queryParams.get("ageMin");
   const ageMax = queryParams.get("ageMax");
+  const defaultAgeMin = 18;
+  const defaultAgeMax = 85;
   const minAge =
     ageMin && !isNaN(ageMin) ? parseInt(ageMin, 10) : defaultAgeMin;
   const maxAge =
     ageMax && !isNaN(ageMax) ? parseInt(ageMax, 10) : defaultAgeMax;
   const navigate = useNavigate();
 
+  console.log(typeof races, races);
   console.log(probability);
 
   let bagscore;
@@ -62,17 +65,137 @@ function Results() {
   let message;
 
   if (bagscore === 1) {
-    message = "You might be TOO easy.";
+    if (races && races.length === 1 && races[0].trim().length > 0) {
+      console.log("Race if check.");
+      const raceMessages = {
+        White: "Go white boy, go white boy go!",
+        Black: "BBC gang we up!",
+        Hispanic: "It's modelo time foo.",
+        Asian: "You love me long time?"
+      };
+      const raceMessage = raceMessages[races];
+      const randomChance = Math.random();
+
+      console.log("Race message check.");
+      if (randomChance < 0.5) {
+        message = raceMessage;
+      } else {
+        message = "You might be TOO easy.";
+      }
+    }
+    else {
+      message = "You might be TOO easy.";
+    }
   } else if (bagscore === 2) {
-    message = "Damn... why aren't you married?";
+    if (races && races.length === 1 && races[0].trim().length > 0) {
+      console.log("Race if check.");
+      const raceMessages = {
+        White: "Go white boy, go white boy go!",
+        Black: "BBC gang we up!",
+        Hispanic: "It's modelo time foo.",
+        Asian: "You love me long time?"
+      };
+      const raceMessage = raceMessages[races];
+      const randomChance = Math.random();
+
+      console.log("Race message check.");
+      if (randomChance < 0.5) {
+        message = raceMessage;
+      } else {
+        message = "Damn... Why aren't you married?";
+      }
+    }
+    else {
+      message = "Damn... Why aren't you married?";
+    }
   } else if (bagscore === 3) {
-    message = "You're kinda reasonable...";
+    if (races && races.length === 1 && races[0].trim().length > 0) {
+      console.log("Race if check.");
+      const raceMessages = {
+        White: "Go white boy, go white boy go!",
+        Black: "BBC gang we up!",
+        Hispanic: "It's modelo time foo.",
+        Asian: "You love me long time?"
+      };
+      const raceMessage = raceMessages[races];
+      const randomChance = Math.random();
+
+      console.log("Race message check.");
+      if (randomChance < 0.5) {
+        message = raceMessage;
+      } else {
+        message = "You're kinda reasonable...";
+      }
+    }
+    else {
+      message = "You're kinda reasonable...";
+    }
   } else if (bagscore === 4) {
-    message = "Lmao? Invest in Chewy.";
+    if (races && races.length === 1 && races[0].trim().length > 0) {
+      console.log("Race if check.");
+      const raceMessages = {
+        White: "Go white boy, go white boy go!",
+        Black: "BBC gang we up!",
+        Hispanic: "It's modelo time foo.",
+        Asian: "You love me long time?"
+      };
+      const raceMessage = raceMessages[races];
+      const randomChance = Math.random();
+
+      console.log("Race message check.");
+      if (randomChance < 0.5) {
+        message = raceMessage;
+      } else {
+        message = "Lmao? Invest in Chewy.";
+      }
+    }
+    else {
+      message = "Lmao? Invest in Chewy.";
+    }
   } else if (bagscore === 5) {
-    message = "You got the whole chat laughing right now... 😂";
+    if (races && races.length === 1  && races[0].trim().length > 0) {
+      console.log("Race if check.");
+      const raceMessages = {
+        White: "Go white boy, go white boy go!",
+        Black: "BBC gang we up!",
+        Hispanic: "It's modelo time foo.",
+        Asian: "You love me long time?"
+      };
+      const raceMessage = raceMessages[races];
+      const randomChance = Math.random();
+
+      console.log("Race message check.");
+      if (randomChance < 0.5) {
+        message = raceMessage;
+      } else {
+        message = "You got the whole chat laughing right now... 😂";
+      }
+    }
+    else {
+      message = "You got the whole chat laughing right now... 😂";
+    }
   } else {
-    message = "based."; // Set a default message if bagscore is outside the range 1-5
+    if (races && races.length === 1 && races[0].trim().length > 0) {
+      console.log("Race if check.");
+      const raceMessages = {
+        White: "Go white boy, go white boy go!",
+        Black: "BBC gang we up!",
+        Hispanic: "It's modelo time foo.",
+        Asian: "You love me long time?"
+      };
+      const raceMessage = raceMessages[races];
+      const randomChance = Math.random();
+
+      console.log("Race message check.");
+      if (randomChance < 0.5) {
+        message = raceMessage;
+      } else {
+        message = "based.";
+      }
+    }
+    else {
+      message = "based.";
+    }
   }
 
   // Within your component
@@ -120,7 +243,7 @@ function Results() {
   }
 
   const handleReset = () => {
-    navigate("/calculator");
+    navigate("/");
   };
 
   return (
@@ -161,7 +284,7 @@ function Results() {
             flexDirection: "column",
             alignItems: "center",
             borderRadius: "8px",
-            width: "900px",
+            width: "950px",
             height: "450px",
           }}
         >

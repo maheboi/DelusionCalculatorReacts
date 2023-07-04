@@ -10,8 +10,8 @@ function Routing() {
       <Routes>
         <Route path="/Results" element={<Results />} />
         <Route path="/Info" element={<Info />} />
-        <Route path="/Calculator" element={<Calculator />} />
-        <Route path="/" element={<LogIn />} />
+        <Route path="/" element={<Calculator />} />
+        <Route path="/LogIn" element={<LogIn />} />
       </Routes>
     </BrowserRouter>
   );

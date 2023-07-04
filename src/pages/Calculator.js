@@ -285,7 +285,8 @@ function Calculator() {
         raceValue = "1:26";
       }
       //Grab the Census Calculations
-      const url = `https://api.census.gov/data/2022/cps/asec/mar?tabulate=weight(MARSUPWT)&col+A_SEX&for=state:*&A_AGE=${ageMinPass}${ageMaxPass}&A_HGA=${educationValue}&AGI=${minimumIncomePass}&A_MARITL=${marriageValue}&PRDTRACE=${raceValue}%`;
+      const url = `https://api.census.gov/data/2022/cps/asec/mar?tabulate=weight(MARSUPWT)&col+A_SEX&for=state:*&A_AGE=${ageMinPass}${ageMaxPass}&A_HGA=${educationValue}&AGI=${minimumIncomePass}&A_MARITL=${marriageValue}&PRDTRACE=${raceValue}`;
+      
       const response = await fetch(url);
       console.log("Denominator URL: " + url);
       const data = await response.json();
@@ -306,11 +307,12 @@ function Calculator() {
           heightBMIProbability
       );
 
+      console.log("Race before urlpass:", race);
       const probability = censusProbability * heightBMIProbability;
-      const urlpass = `/Results?probability=${encodeURIComponent(
+      const urlPass = `/Results?probability=${encodeURIComponent(
         probability.toString()
-      )}&ageMin=${ageMin}&ageMax=${ageMax}`;
-      await navigate(urlpass);
+      )}&ageMin=${ageMin}&ageMax=${ageMax}&race=${race}`;
+      await navigate(urlPass);
 
       const input = {
         ageMin,
@@ -655,7 +657,7 @@ function Calculator() {
         </div>
       </Card>
 
-      <div className="animate__animated animate__fadeIn animate__delay-1s" style={{ position: "fixed", bottom: "20px", left: "20px", display: "flex", alignItems: "flex-start" }}>
+      <div className="animate__animated animate__fadeIn animate__delay-1s" style={{ position: "fixed", bottom: "10px", left: "20px", display: "flex", alignItems: "flex-start" }}>
         <div style={{ marginRight: "10px" }}>
           <Text
             color={"white"}
@@ -731,77 +733,114 @@ function Calculator() {
         className="Box-trim animate__animated animate__fadeIn animate__delay-1s"
         style={{
           width: "175px",
-          height: "125px",
-          borderRadius: "32px",
+          height: "205px",
+          borderRadius: "25px",
           backgroundColor: "rgba(48, 48, 48, 0.25)",
           boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)",
           position: "fixed",
-          bottom: "30px",
+          bottom: "20px",
           right: "20px",
           padding: "20px",
           fontSize: ".45em",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
-        <h2 style={{ margin: "0", marginBottom: "10px", fontSize: ".95em" }}>
-          Full Stack Devs
-        </h2>
-        <ul style={{ listStyleType: "none", padding: "0", margin: "0", textAlign: "center" }}>
-          <li style={{ marginBottom: "5px" }}>
-            <a
-              href="https://www.instagram.com/ceosecretorder/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "rgba(255, 105, 180, 1)",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <FaInstagram style={{ marginRight: "5px" }} />
-              @ceosecretorder
-            </a>
-          </li>
-          <li style={{ marginBottom: "5px" }}>
-            <a
-              href="https://www.instagram.com/frediosos/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "rgba(255, 105, 180, 1)",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <FaInstagram style={{ marginRight: "5px" }} />
-              @frediosos
-            </a>
-          </li>
-          <li style={{ marginBottom: "5px" }}>
-            <a
-              href="https://www.instagram.com/sean.lattimore/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "rgba(255, 105, 180, 1)",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <FaInstagram style={{ marginRight: "5px" }} />
-              @sean.lattimore
-            </a>
-          </li>
-        </ul>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h2 style={{ margin: "0", marginBottom: "10px", fontSize: ".95em" }}>
+            Full Stack Devs
+          </h2>
+          <ul
+            style={{
+              listStyleType: "none",
+              padding: "0",
+              margin: "0",
+              textAlign: "center",
+            }}
+          >
+            <li style={{ marginBottom: "5px" }}>
+              <a
+                href="https://www.instagram.com/frediosos/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "rgba(255, 105, 180, 1)",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FaInstagram style={{ marginRight: "5px" }} />
+                @frediosos
+              </a>
+            </li>
+            <li style={{ marginBottom: "5px" }}>
+              <a
+                href="https://www.instagram.com/sean.lattimore/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "rgba(255, 105, 180, 1)",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FaInstagram style={{ marginRight: "5px" }} />
+                @sean.lattimore
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h2 style={{ fontSize: ".95em" }}>
+            CEO Network
+          </h2>
+          <ul
+            style={{
+              listStyleType: "none",
+              padding: "0",
+              margin: "0",
+              textAlign: "center",
+            }}
+          >
+            <li style={{ marginBottom: "5px" }}>
+              <a
+                href="https://www.instagram.com/ceosecretorder/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "rgba(255, 105, 180, 1)",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FaInstagram style={{ marginRight: "5px" }} />
+                @ceosecretorder
+              </a>
+            </li>
+          </ul>
+        </div>
       </Card>
     </div>
   );

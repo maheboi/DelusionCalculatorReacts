@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import { Button, Text } from "@aws-amplify/ui-react";
@@ -7,7 +6,7 @@ import Design from "../styles/Design.js";
 
 function Info() {
   const handleBackHome = (event) => {
-    navigate("/Calculator");
+    navigate("/");
   };
 
   const navigate = useNavigate();
@@ -41,7 +40,7 @@ function Info() {
               color={"white"}
             >
               This calculator was built for edutainment purposes. All data on
-              marriage, income by age and ethnicity, and dwelling/education by
+              marriage, income by age and ethnicity, and education by
               race and income was sourced from the 2023 "Current Population
               Survey - Annual Social and Economic Supplement" (CPS-ASEC) carried
               out by the US Census Bureau. All data on height & weight by race
