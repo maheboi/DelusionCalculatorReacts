@@ -103,10 +103,10 @@ function Calculator() {
 
   const handleIncomeChange = (value) => {
     const numericValue = Number(value);
-    if (numericValue <= 2000000) {
+    if (numericValue <= 500000) {
       setMinimumIncome(numericValue);
     } else {
-      setMinimumIncome(2000000);
+      setMinimumIncome(500000);
     }
   };
 
@@ -738,8 +738,8 @@ function Calculator() {
           backgroundColor: "rgba(48, 48, 48, 0.25)",
           boxShadow: "0px 0px 16px rgba(255, 105, 180, 1)",
           position: "fixed",
-          bottom: "20px",
-          right: "20px",
+          top: "25px",
+          left: "20px",
           padding: "20px",
           fontSize: ".45em",
           display: "flex",
