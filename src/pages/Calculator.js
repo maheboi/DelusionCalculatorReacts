@@ -1,6 +1,5 @@
 import logo from "../assets/FF Logo Transparent.png";
 import catBag from "../assets/Bag.png";
-import "../styles/Calculator.css";
 import "../styles/customAnimations.css";
 import * as React from "react";
 import { createTodo } from "../graphql/mutations";
@@ -26,6 +25,7 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../aws-exports";
 import Design from "../styles/Design.js";
+import "../styles/Calculator.css";
 
 Amplify.configure(awsExports);
 
@@ -338,32 +338,24 @@ function Calculator() {
     <div className="Calculator">
       <Design className="Design" />
       <header className="Calculator-header">
-        <div>
-          <div>
+        <div className="div-center">
+          <div className="justify-center">
             <img src={logo} className="Calculator-logo" alt="logo" />
             <img src={catBag} className="Calculator-catBag" alt="catBag" />
           </div>
-          <p style={{ textAlign: "center" }}>
-            <code
-              style={{
-                textAlign: "center",
-                color: "black",
-                fontWeight: "bold",
-                textShadow:
-                  "0px 0px 4px white, 0px 0px 6px white, 0px 0px 8px white",
-              }}
-            >
+          <p className="text-align">
+            <code className="calculator-text">
               Welcome to the Delusion Calculator
             </code>
           </p>
         </div>
       </header>
 
-      <Card className="container container-fluid Box-trim animate__animated animate__fadeIn">
+      <Card className="container container-box Box-trim animate__animated animate__fadeIn">
         <div>
-          <div className="cardTopRow row">
-            <Card className="col Card-input animate__animated animate__fadeInUp">
-              <p style={{ color: "black", fontWeight: "bold" }}>Age</p>
+          <div className="row gx-5 cardTopRow">
+            <Card className="col m-3 borderborder.bg-transparentCard-input animate__animated animate__fadeInUp">
+              <p className="heading">Age</p>
               <div>
                 <TextField
                   placeholder="Minimum Age"
@@ -389,8 +381,8 @@ function Calculator() {
                 />
               </div>
             </Card>
-            <Card className="col animate__animated animate__fadeInUp">
-              <p style={{ color: "black", fontWeight: "bold" }}>Height</p>
+            <Card className="col m-3 borderanimate__animated animate__fadeInUp">
+              <p className="heading">Height</p>
               <SelectField
                 placeholder="Minimum Height"
                 label="Height"
@@ -420,53 +412,50 @@ function Calculator() {
                 ]}
               />
             </Card>
-            <Card className="col animate__animated animate__fadeInUp">
-              <p style={{ color: "black", fontWeight: "bold" }}>Race</p>
+            <Card className="col m-3 border animate__animated animate__fadeInUp">
+              <p className="heading">Race</p>
               <div className="row-flex">
                 <div className="checkBox">
                   <CheckboxField
                     label="White"
                     name="White"
-                    style={{ backgroundColor: "#3367ef" }}
                     checked={race.includes("White")}
                     onChange={handleRaceChange}
                   />
                   <CheckboxField
                     label="Black"
                     name="Black"
-                    style={{ backgroundColor: "#3367ef" }}
                     checked={race.includes("Black")}
                     onChange={handleRaceChange}
                   />
                   <CheckboxField
                     label="Hispanic"
                     name="Hispanic"
-                    style={{ backgroundColor: "#3367ef" }}
                     checked={race.includes("Hispanic")}
                     onChange={handleRaceChange}
                   />
                   <CheckboxField
                     label="Asian"
                     name="Asian"
-                    style={{ backgroundColor: "#3367ef" }}
                     checked={race.includes("Asian")}
                     onChange={handleRaceChange}
                   />
-                  <CheckboxField
-                    label="Other"
-                    name="Other"
-                    style={{ backgroundColor: "#3367ef" }}
-                    checked={race.includes("Other")}
-                    onChange={handleRaceChange}
-                  />
+                  <div className="div-center">
+                    <CheckboxField
+                      label="Other"
+                      name="Other"
+                      checked={race.includes("Other")}
+                      onChange={handleRaceChange}
+                    />
+                  </div>
                 </div>
               </div>
             </Card>
           </div>
 
-          <div className="row cardBottomRow">
-            <Card className="col animate__animated animate__backInUp">
-              <p style={{ color: "black", fontWeight: "bold" }}>Education</p>
+          <div className="row gx-5 cardBottomRow">
+            <Card className="col m-3 border animate__animated animate__backInUp">
+              <p className="heading">Education</p>
               <SelectField
                 placeholder="Minimum Education"
                 label="Education"
@@ -481,14 +470,13 @@ function Calculator() {
                 <option value="Doctorate's Degree">Doctorate's Degree</option>
               </SelectField>
             </Card>
-            <Card className="col animate__animated animate__backInUp">
-              <p style={{ color: "black", fontWeight: "bold" }}>Income</p>
+            <Card className="col m-3 border animate__animated animate__backInUp">
+              <p className="heading">Income</p>
               <div>
                 <TextField
                   placeholder="Minimum Income"
                   value={minimumIncome}
                   onChange={(event) => handleIncomeChange(event.target.value)}
-                  style={{ width: "80%" }}
                   variation="quiet"
                   min={0}
                   max={500000}
@@ -504,8 +492,7 @@ function Calculator() {
                 />
               </div>
             </Card>
-            <Card className="col animate__animated animate__backInUp">
-              <p style={{ color: "black" }}></p>
+            <Card className="col m-3 border animate__animated animate__backInUp">
               <div className="marriedObeseFields">
                 <CheckboxField
                   label="Exclude Married?"
@@ -602,10 +589,6 @@ function Calculator() {
               href="https://www.instagram.com/frediosos/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                color: "rgba(255, 105, 180, 1)",
-                textDecoration: "none",
-              }}
             >
               <FaInstagram style={{ marginRight: "5px" }} />
               @frediosos
@@ -616,10 +599,6 @@ function Calculator() {
               href="https://www.instagram.com/sean.lattimore/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                color: "rgba(255, 105, 180, 1)",
-                textDecoration: "none",
-              }}
             >
               <FaInstagram style={{ marginRight: "5px" }} />
               @sean.lattimore
