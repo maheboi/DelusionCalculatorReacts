@@ -339,7 +339,7 @@ function Calculator() {
       <Design className="Design" />
       <header className="Calculator-header">
         <div className="div-center">
-          <div className="justify-center">
+          <div className="justify-center text-align">
             <img src={logo} className="Calculator-logo" alt="logo" />
             <img src={catBag} className="Calculator-catBag" alt="catBag" />
           </div>
@@ -354,7 +354,7 @@ function Calculator() {
       <Card className="container container-box Box-trim animate__animated animate__fadeIn">
         <div>
           <div className="row gx-5 cardTopRow">
-            <Card className="col m-3 borderborder.bg-transparentCard-input animate__animated animate__fadeInUp">
+            <Card className="col field m-3 borderborder.bg-transparentCard-input animate__animated animate__fadeInUp">
               <p className="heading">Age</p>
               <div>
                 <TextField
@@ -381,7 +381,7 @@ function Calculator() {
                 />
               </div>
             </Card>
-            <Card className="col m-3 borderanimate__animated animate__fadeInUp">
+            <Card className="col field m-3 borderanimate__animated animate__fadeInUp">
               <p className="heading">Height</p>
               <SelectField
                 placeholder="Minimum Height"
@@ -412,7 +412,7 @@ function Calculator() {
                 ]}
               />
             </Card>
-            <Card className="col m-3 border animate__animated animate__fadeInUp">
+            <Card className="col field m-3 border animate__animated animate__fadeInUp">
               <p className="heading">Race</p>
               <div className="row-flex">
                 <div className="checkBox">
@@ -454,7 +454,7 @@ function Calculator() {
           </div>
 
           <div className="row gx-5 cardBottomRow">
-            <Card className="col m-3 border animate__animated animate__backInUp">
+            <Card className="col field m-3 border animate__animated animate__backInUp">
               <p className="heading">Education</p>
               <SelectField
                 placeholder="Minimum Education"
@@ -470,7 +470,7 @@ function Calculator() {
                 <option value="Doctorate's Degree">Doctorate's Degree</option>
               </SelectField>
             </Card>
-            <Card className="col m-3 border animate__animated animate__backInUp">
+            <Card className="col field m-3 border animate__animated animate__backInUp">
               <p className="heading">Income</p>
               <div>
                 <TextField
@@ -492,7 +492,7 @@ function Calculator() {
                 />
               </div>
             </Card>
-            <Card className="col m-3 border animate__animated animate__backInUp">
+            <Card className="col field m-3 border animate__animated animate__backInUp">
               <div className="marriedObeseFields">
                 <CheckboxField
                   label="Exclude Married?"
