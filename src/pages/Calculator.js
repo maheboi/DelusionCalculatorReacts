@@ -354,7 +354,7 @@ function Calculator() {
       <Card className="container container-box Box-trim animate__animated animate__fadeIn">
         <div>
           <div className="row gx-5 cardTopRow">
-            <Card className="col m-3 borderborder.bg-transparentCard-input animate__animated animate__fadeInUp">
+            <Card className="col m-3 border.bg-transparentCard-input animate__animated animate__fadeInUp">
               <p className="heading">Age</p>
               <div>
                 <TextField
@@ -493,19 +493,21 @@ function Calculator() {
               </div>
             </Card>
             <Card className="col m-3 border animate__animated animate__backInUp">
-              <div className="marriedObeseFields">
-                <CheckboxField
-                  label="Exclude Married?"
-                  name="marriage"
-                  style={{ backgroundColor: "#3367ef" }}
-                  onChange={handleMarriedChange}
-                />
-                <CheckboxField
-                  label="Exclude Obese?"
-                  name="Obesity"
-                  className="amplify-checkbox_icon"
-                  onChange={handleObeseChange}
-                />
+              <div className="centeredContents">
+                <div>
+                  <CheckboxField
+                    label="Exclude Married?"
+                    name="marriage"
+                    style={{ backgroundColor: "#3367ef" }}
+                    onChange={handleMarriedChange}
+                  />
+                  <CheckboxField
+                    label="Exclude Obese?"
+                    name="Obesity"
+                    className="amplify-checkbox_icon"
+                    onChange={handleObeseChange}
+                  />
+                </div>
               </div>
             </Card>
           </div>
@@ -596,12 +598,12 @@ function Calculator() {
           </li>
           <li style={{ marginBottom: "5px" }}>
             <a
-              href="https://www.instagram.com/sean.lattimore/"
+              href="https://www.instagram.com/slattimo/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaInstagram style={{ marginRight: "5px" }} />
-              @sean.lattimore
+              @slattimo
             </a>
           </li>
         </ul>
