@@ -14,10 +14,19 @@
 }
 
 .row {
+<<<<<<< Updated upstream
   background-color: transparent;
 }
 
 .calulator-text {
+=======
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: transparent;
+}
+
+.calculator-text {
+>>>>>>> Stashed changes
   text-align: center;
   color: black;
   font-weight: bold;
@@ -25,13 +34,29 @@
 }
 
 .container-box {
+<<<<<<< Updated upstream
   background-color: transparent;
+=======
+  background-color: rgba(0, 0, 0, 0.1); /* Pink color with 50% opacity */
+  box-shadow: 0 0 10px rgba(255, 105, 180, 1); /* Pink shadow with 80% opacity */
+  padding: 20px;
+  border-radius: 10px;
+}
+.container-box-2 {
+  background-color: rgba(0, 0, 0, 0.1); /* Pink color with 50% opacity */
+  box-shadow: 0 0 10px rgba(255, 105, 180, 1); /* Pink shadow with 80% opacity */
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block; /* Set the display to inline-block */
+  text-align: left; /* Align the contents to the left */
+>>>>>>> Stashed changes
 }
 .div-center {
   justify-content: center;
   align-items: center;
 }
 
+<<<<<<< Updated upstream
 .field {
   border-radius: 8px;
 }
@@ -40,6 +65,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+=======
+.justify-center {
+  justify-content: center;
+>>>>>>> Stashed changes
 }
 
 .text-align {
@@ -63,6 +92,10 @@
 }
 
 .Calculator-header {
+<<<<<<< Updated upstream
+=======
+  background-color: #00000000;
+>>>>>>> Stashed changes
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -110,8 +143,7 @@
 .card {
   align-items: center;
   border-radius: 8px;
-  width: 300px;
-  height: 200px;
+
   justify-content: center;
 }
 
@@ -147,4 +179,11 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 5px;
+}
+
+.centeredContents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,15 +1,27 @@
 {
   "api": {
-    "CensusCalcAPI": {
+    "CensusAPI": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "CensusLamdaAPI"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
+    "calculatorreacts": {
       "dependsOn": [],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDate": "2024-06-29T09:11:20.779Z",
-              "apiKeyExpirationDays": 365,
-              "description": ""
+              "apiKeyExpirationDays": 7
             },
             "authenticationType": "API_KEY"
           }
@@ -20,7 +32,7 @@
     }
   },
   "auth": {
-    "calculatorreacts2e8f1da6": {
+    "calculatorreactsdf221b1f": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -47,11 +59,17 @@
       "service": "Cognito"
     }
   },
-  "hosting": {
-    "amplifyhosting": {
+  "function": {
+    "CensusLamdaAPI": {
+      "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "amplifyhosting",
-      "type": "manual"
+      "service": "Lambda"
+    }
+  },
+  "hosting": {
+    "S3AndCloudFront": {
+      "providerPlugin": "awscloudformation",
+      "service": "S3AndCloudFront"
     }
   },
   "parameters": {
@@ -103,22 +121,6 @@
         }
       ]
     },
-    "AMPLIFY_storage_AmplifyDataStoregt6hl4jiefgqrjh2ijnd4huzjadev_sortKeyName": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "AmplifyDataStoregt6hl4jiefgqrjh2ijnd4huzjadev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_AmplifyDataStoregt6hl4jiefgqrjh2ijnd4huzjadev_sortKeyType": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "AmplifyDataStoregt6hl4jiefgqrjh2ijnd4huzjadev"
-        }
-      ]
-    },
     "AMPLIFY_storage_AmplifyDataStoregt6hl4jiefgqrjh2ijnd4huzjadev_streamArn": {
       "usedBy": [
         {
@@ -137,7 +139,7 @@
     }
   },
   "storage": {
-    "AmplifyDataStoregt6hl4jiefgqrjh2ijnd4huzjadev": {
+    "Todo22d3uzzolbentis6h5rqrxvcqmdev": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB",

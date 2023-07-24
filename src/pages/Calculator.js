@@ -339,7 +339,11 @@ function Calculator() {
       <Design className="Design" />
       <header className="Calculator-header">
         <div className="div-center">
+<<<<<<< Updated upstream
           <div className="justify-center text-align">
+=======
+          <div className="justify-center">
+>>>>>>> Stashed changes
             <img src={logo} className="Calculator-logo" alt="logo" />
             <img src={catBag} className="Calculator-catBag" alt="catBag" />
           </div>
@@ -354,7 +358,14 @@ function Calculator() {
       <Card className="container container-box Box-trim animate__animated animate__fadeIn">
         <div>
           <div className="row gx-5 cardTopRow">
+<<<<<<< Updated upstream
             <Card className="col field m-3 borderborder.bg-transparentCard-input animate__animated animate__fadeInUp">
+=======
+            <Card
+              className="col m-3 border.bg-transparentCard-input animate__animated animate__fadeInUp"
+              style={{ borderRadius: "8px" }}
+            >
+>>>>>>> Stashed changes
               <p className="heading">Age</p>
               <div>
                 <TextField
@@ -381,7 +392,14 @@ function Calculator() {
                 />
               </div>
             </Card>
+<<<<<<< Updated upstream
             <Card className="col field m-3 borderanimate__animated animate__fadeInUp">
+=======
+            <Card
+              className=" col m-3 border animate__animated animate__fadeInUp"
+              style={{ borderRadius: "8px" }}
+            >
+>>>>>>> Stashed changes
               <p className="heading">Height</p>
               <SelectField
                 placeholder="Minimum Height"
@@ -412,7 +430,14 @@ function Calculator() {
                 ]}
               />
             </Card>
+<<<<<<< Updated upstream
             <Card className="col field m-3 border animate__animated animate__fadeInUp">
+=======
+            <Card
+              className="col m-3 border animate__animated animate__fadeInUp"
+              style={{ borderRadius: "8px" }}
+            >
+>>>>>>> Stashed changes
               <p className="heading">Race</p>
               <div className="row-flex">
                 <div className="checkBox">
@@ -454,6 +479,7 @@ function Calculator() {
           </div>
 
           <div className="row gx-5 cardBottomRow">
+<<<<<<< Updated upstream
             <Card className="col field m-3 border animate__animated animate__backInUp">
               <p className="heading">Education</p>
               <SelectField
@@ -473,6 +499,37 @@ function Calculator() {
             <Card className="col field m-3 border animate__animated animate__backInUp">
               <p className="heading">Income</p>
               <div>
+=======
+            <Card
+              className="col m-3 border animate__animated animate__backInUp"
+              style={{ borderRadius: "8px" }}
+            >
+              <p className="heading">Education</p>
+              <div className="centeredContents" style={{ height: "50%" }}>
+                <SelectField
+                  placeholder="Minimum Education"
+                  label="Education"
+                  labelHidden
+                  width="100%"
+                  onChange={handleEducationChange}
+                >
+                  <option value="Highschool Diploma">
+                    Any Education Level
+                  </option>
+                  <option value="Associate's Degree">Associate's Degree</option>
+                  <option value="Bachelor's Degree">Bachelor's Degree</option>
+                  <option value="Master's Degree">Master's Degree</option>
+                  <option value="Doctorate's Degree">Doctorate's Degree</option>
+                </SelectField>
+              </div>
+            </Card>
+            <Card
+              className=" col m-3 border animate__animated animate__backInUp"
+              style={{ borderRadius: "8px" }}
+            >
+              <p className="heading">Income</p>
+              <div className="centeredContents" style={{ height: "50" }}>
+>>>>>>> Stashed changes
                 <TextField
                   placeholder="Minimum Income"
                   value={minimumIncome}
@@ -487,11 +544,11 @@ function Calculator() {
                   value={minimumIncome}
                   isValueHidden
                   onChange={handleIncomeChange}
-                  width="80%"
                   filledTrackColor={"#3267f1"}
                 />
               </div>
             </Card>
+<<<<<<< Updated upstream
             <Card className="col field m-3 border animate__animated animate__backInUp">
               <div className="marriedObeseFields">
                 <CheckboxField
@@ -506,6 +563,27 @@ function Calculator() {
                   className="amplify-checkbox_icon"
                   onChange={handleObeseChange}
                 />
+=======
+            <Card
+              className=" col m-3 border animate__animated animate__backInUp "
+              style={{ borderRadius: "8px" }}
+            >
+              <div className="centeredContents" style={{ height: "100%" }}>
+                <div>
+                  <CheckboxField
+                    label="Exclude Married?"
+                    name="marriage"
+                    style={{ backgroundColor: "#3367ef" }}
+                    onChange={handleMarriedChange}
+                  />
+                  <CheckboxField
+                    label="Exclude Obese?"
+                    name="Obesity"
+                    className="amplify-checkbox_icon"
+                    onChange={handleObeseChange}
+                  />
+                </div>
+>>>>>>> Stashed changes
               </div>
             </Card>
           </div>
@@ -518,12 +596,14 @@ function Calculator() {
           variation="destructive"
           loadingText="Loading..."
           onClick={handleBuildMan}
+          backgroundColor={"#d40203"}
         >
           Build Your Man
         </Button>
       </div>
       <div>
         <div>
+<<<<<<< Updated upstream
           <Button
             className="animate__animated animate__fadeIn animate__delay-1s"
             variation="destructive"
@@ -532,19 +612,26 @@ function Calculator() {
           >
             <FaInfo />
           </Button>
+=======
+>>>>>>> Stashed changes
           <Text
             color={"white"}
             marginRight={"20px"}
             className="animate__animated animate__fadeIn animate__delay-1s"
-          >
-            Info
-          </Text>
+          ></Text>
         </div>
 
         <Text
           color={"white"}
           marginRight={"-20px"}
+<<<<<<< Updated upstream
           className="animate__animated animate__fadeIn animate__delay-1s"
+=======
+          marginTop={"20px"}
+          marginBottom={"30px"}
+          className="animate__animated animate__fadeIn animate__delay-1s"
+          fontSize={".8em"}
+>>>>>>> Stashed changes
         >
           Live search using the{" "}
           <a
@@ -563,28 +650,56 @@ function Calculator() {
           >
             National Health and Nutrition Examination Survey
           </a>{" "}
-          from the Center for Disease Control (CDC).
+          from the Center for Disease Control (CDC).{" "}
+          <Button
+            className="animate__animated animate__fadeIn animate__delay-1s"
+            variation="destructive"
+            loadingText="Loading..."
+            onClick={handleToInfo}
+            marginBottom={"20px"}
+            color={"white"}
+            backgroundColor={"blue"}
+          >
+            <FaInfo />
+          </Button>
         </Text>
       </div>
 
+<<<<<<< Updated upstream
       <Card className="Box-trim animate__animated animate__fadeIn">
         <h2>Full Stack Devs</h2>
         <ul>
           <li>
+=======
+      <Card className="container container-box-2 animate__animated animate__fadeIn">
+        <h2 style={{ color: "white" }}>Full Stack Devs</h2>
+        <ul>
+          <li
+            style={{
+              color: "rgba(255, 105, 180, 1)",
+              textDecoration: "none",
+            }}
+          >
+>>>>>>> Stashed changes
             <a
               href="https://www.instagram.com/ceosecretorder/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                color: "rgba(255, 105, 180, 1)",
-                textDecoration: "none",
-              }}
             >
               <FaInstagram style={{ marginRight: "5px" }} />
               @ceosecretorder
             </a>
           </li>
+<<<<<<< Updated upstream
           <li>
+=======
+          <li
+            style={{
+              color: "rgba(255, 105, 180, 1)",
+              textDecoration: "none",
+            }}
+          >
+>>>>>>> Stashed changes
             <a
               href="https://www.instagram.com/frediosos/"
               target="_blank"
@@ -594,14 +709,19 @@ function Calculator() {
               @frediosos
             </a>
           </li>
-          <li style={{ marginBottom: "5px" }}>
+          <li
+            style={{
+              color: "rgba(255, 105, 180, 1)",
+              textDecoration: "none",
+            }}
+          >
             <a
-              href="https://www.instagram.com/sean.lattimore/"
+              href="https://www.instagram.com/slattimo/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaInstagram style={{ marginRight: "5px" }} />
-              @sean.lattimore
+              @slattimo
             </a>
           </li>
         </ul>

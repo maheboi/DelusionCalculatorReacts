@@ -52,8 +52,8 @@
 
 .cat-bag-image {
   margin-top: 20px;
-  width: 10%;
-  height: 10%;
+  width: 12.5%;
+  height: 12.5%;
 }
 
 .message {
@@ -64,6 +64,7 @@
 }
 .div-reset-button {
   margin-top: 20px;
+  margin-bottom: 100%;
 }
 
 .reset-button {

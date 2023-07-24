@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import { Button, Text } from "@aws-amplify/ui-react";
@@ -22,40 +21,36 @@ function Info() {
           as="p"
           lineHeight="1.5em"
           fontWeight={400}
-          fontSize=".5em"
+          fontSize=".8em"
           fontStyle="normal"
           textDecoration="none"
-          width="30vw"
           color={"white"}
         >
-          {" "}
-          <p>
-            <Text
-              variation="primary"
-              as="p"
-              lineHeight="1.5em"
-              fontWeight={400}
-              fontSize="1em"
-              fontStyle="normal"
-              textDecoration="none"
-              width="30vw"
-              color={"white"}
-            >
-              This calculator was built for edutainment purposes. All data on
-              marriage, income by age and ethnicity, and dwelling/education by
-              race and income was sourced from the 2023 "Current Population
-              Survey - Annual Social and Economic Supplement" (CPS-ASEC) carried
-              out by the US Census Bureau. All data on height & weight by race
-              was sourced from the NHANES (The National Health and Nutrition
-              Examination) survey. NHANES is a major program of the National
-              Center for Health Statistics (NCHS). NCHS is part of the Centers
-              for Disease Control and Prevention (CDC) and has the
-              responsibility for producing vital and health statistics for the
-              Nation.This calculator has gone through multiple iterations in
-              order to refine the accuracy of the calculations. It is currently
-              on Version 3.
-            </Text>
-          </p>
+          <Text
+            variation="primary"
+            as="p"
+            lineHeight="1.5em"
+            fontWeight={400}
+            fontSize="1em"
+            fontStyle="normal"
+            textDecoration="none"
+            color={"white"}
+            textAlign={"center"}
+          >
+            This calculator was built for edutainment purposes. All data on
+            marriage, income by age and ethnicity, and dwelling/education by
+            race and income was sourced from the 2023 "Current Population Survey
+            - Annual Social and Economic Supplement" (CPS-ASEC) carried out by
+            the US Census Bureau. All data on height & weight by race was
+            sourced from the NHANES (The National Health and Nutrition
+            Examination) survey. NHANES is a major program of the National
+            Center for Health Statistics (NCHS). NCHS is part of the Centers for
+            Disease Control and Prevention (CDC) and has the responsibility for
+            producing vital and health statistics for the Nation.This calculator
+            has gone through multiple iterations in order to refine the accuracy
+            of the calculations. It is currently on Version 3.
+          </Text>
+
           <h2>Limitations:</h2>
           <p>
             <Text
@@ -66,8 +61,8 @@ function Info() {
               fontSize="1em"
               fontStyle="normal"
               textDecoration="none"
-              width="30vw"
               color={"white"}
+              textAlign={"center"}
             >
               How is the calculator able to merge the two statistical samples
               (CPS and NHANES) to generate one reliable result? In an ideal
@@ -101,8 +96,8 @@ function Info() {
               fontSize="1em"
               fontStyle="normal"
               textDecoration="none"
-              width="30vw"
               color={"white"}
+              textAlign={"center"}
             >
               <h2>Data Sources:</h2>
               <ul style={{ listStyleType: "none", padding: 0 }}>
@@ -152,15 +147,16 @@ function Info() {
               </ul>
             </Text>
           </p>
+
+          <Button
+            className="return-button animate__animated animate__fadeIn"
+            variation="destructive"
+            loadingText="Loading..."
+            onClick={handleBackHome}
+          >
+            Return
+          </Button>
         </Text>
-        <Button
-          className="return-button animate__animated animate__fadeIn"
-          variation="destructive"
-          loadingText="Loading..."
-          onClick={handleBackHome}
-        >
-          Return
-        </Button>
       </header>
     </div>
   );
