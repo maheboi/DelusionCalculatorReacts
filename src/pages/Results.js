@@ -129,8 +129,8 @@ function Results() {
           <code className="results-title-text">Results</code>
         </p>
       </header>
-      <Card className="Card-container Box-trim animate__animated animate__fadeIn">
-        <Card className="Card-inner Card-input animate__animated animate__fadeInUp">
+      <Card className="container Card-container Box-trim animate__animated animate__fadeIn">
+        <Card className="container Card-inner Card-input animate__animated animate__fadeInUp">
           <div>
             <p>
               <TypeAnimation

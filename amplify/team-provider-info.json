@@ -51,24 +51,32 @@
       "AmplifyAppId": "du6939f0mcl75"
     },
     "categories": {
-      "storage": {
-        "Todo22d3uzzolbentis6h5rqrxvcqmdev": {
-          "tableName": "Todo-22d3uzzolbentis6h5rqrxvcqm-dev",
-          "region": "us-east-1",
-          "arn": "arn:aws:dynamodb:us-east-1:652149599343:table/Todo-22d3uzzolbentis6h5rqrxvcqm-dev",
-          "streamArn": "arn:aws:dynamodb:us-east-1:652149599343:table/Todo-22d3uzzolbentis6h5rqrxvcqm-dev/stream/2023-06-23T07:05:55.883",
-          "partitionKeyName": "id",
-          "partitionKeyType": "S"
-        }
-      },
       "api": {
         "calculatorreacts": {}
       },
-      "auth": {
-        "calculatorreactsdf221b1f": {}
-      },
       "function": {
         "CensusLamdaAPI": {}
+      },
+      "auth": {
+        "calculatorreacts2e8f1da6": {},
+        "calculatorreactsdf221b1f": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "du6939f0mcl75",
+          "type": "manual"
+        }
+      },
+      "storage": {
+        "AmplifyDataStoregt6hl4jiefgqrjh2ijnd4huzjadev": {
+          "tableName": "Todo-2r2msfo7urcrzl6ingbti65wbi-censuscalc",
+          "region": "us-east-1",
+          "arn": "arn:aws:dynamodb:us-east-1:652149599343:table/Todo-2r2msfo7urcrzl6ingbti65wbi-censuscalc",
+          "streamArn": "arn:aws:dynamodb:us-east-1:652149599343:table/Todo-2r2msfo7urcrzl6ingbti65wbi-censuscalc/stream/2023-06-25T19:03:56.092",
+          "partitionKeyName": "id",
+          "partitionKeyType": "S"
+        },
+        "Todo22d3uzzolbentis6h5rqrxvcqmdev": {}
       }
     }
   }

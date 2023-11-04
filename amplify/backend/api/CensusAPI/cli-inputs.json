@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/data/2022/cps/asec/mar": {
+      "name": "/data/2022/cps/asec/mar",
+      "lambdaFunction": "CensusLamdaAPI",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
